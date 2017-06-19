@@ -1,0 +1,6 @@
+* origin=auto eol=lf
+*.java ident
+*.xml ident
+gradlew filter=lfs diff=lfs merge=lfs -text
+gradlew.bat filter=lfs diff=lfs merge=lfs -text
+gradle/wrapper/* filter=lfs diff=lfs merge=lfs -text
