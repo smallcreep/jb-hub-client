@@ -23,9 +23,19 @@ repositories {
 
 project.ext {
     junitVersion = "4.12"
+    jcabiAspectsVersion = "0.22.6"
+    javaxJsonVersion = "1.1"
+    jcabiManifestsVersion = "1.1"
+    jcabiHttpVersion = "1.17"
+    jsr311ApiVersion = "1.1.1"
 }
 
 dependencies {
+    compile "com.jcabi:jcabi-aspects:$jcabiAspectsVersion"
+    compile "javax.json:javax.json-api:$javaxJsonVersion"
+    compile "com.jcabi:jcabi-manifests:$jcabiManifestsVersion"
+    compile "com.jcabi:jcabi-http:$jcabiHttpVersion"
+    compile "javax.ws.rs:jsr311-api:$jsr311ApiVersion"
 
     testCompile "junit:junit:$junitVersion"
 }
