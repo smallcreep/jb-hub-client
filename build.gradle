@@ -44,12 +44,13 @@ dependencies {
     compile "com.jcabi:jcabi-manifests:$jcabiManifestsVersion"
     compile "com.jcabi:jcabi-http:$jcabiHttpVersion"
     compile "javax.ws.rs:jsr311-api:$jsr311ApiVersion"
-
-    runtime "com.sun.jersey:jersey-client:$jerseyClientVersion"
-
-    testCompile "junit:junit:$junitVersion"
     compile "org.hamcrest:hamcrest-core:$hamcrestVersion"
     compile "org.hamcrest:hamcrest-library:$hamcrestVersion"
+
+    runtime "com.sun.jersey:jersey-client:$jerseyClientVersion"
+    runtime "org.glassfish:javax.json:$javaxJsonVersion"
+
+    testCompile "junit:junit:$junitVersion"
     testCompile "nl.jqno.equalsverifier:equalsverifier:$equalsverifierVersion"
 
     testRuntime "com.sun.grizzly:grizzly-servlet-webserver:$grizzlyServletWebserverVersion"
