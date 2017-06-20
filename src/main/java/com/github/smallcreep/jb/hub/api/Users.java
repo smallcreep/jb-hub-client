@@ -11,6 +11,12 @@ package com.github.smallcreep.jb.hub.api;
 public interface Users {
 
     /**
+     * Get its owner.
+     * @return Hub
+     */
+    Hub hub();
+
+    /**
      * Get logged-in user.
      * @return User
      */

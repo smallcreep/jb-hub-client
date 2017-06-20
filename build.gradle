@@ -23,6 +23,7 @@ repositories {
 
 project.ext {
     junitVersion = "4.12"
+    lombokVersion = "1.16.10"
     jcabiAspectsVersion = "0.22.6"
     javaxJsonVersion = "1.1"
     jcabiManifestsVersion = "1.1"
@@ -33,9 +34,11 @@ project.ext {
     jerseyClientVersion = "1.19.3"
     log4jVersion = "2.8.2"
     httpclientVersion = "4.5.3"
+    equalsverifierVersion = "2.3"
 }
 
 dependencies {
+    compile "org.projectlombok:lombok:$lombokVersion"
     compile "com.jcabi:jcabi-aspects:$jcabiAspectsVersion"
     compile "javax.json:javax.json-api:$javaxJsonVersion"
     compile "com.jcabi:jcabi-manifests:$jcabiManifestsVersion"
@@ -47,6 +50,7 @@ dependencies {
     testCompile "junit:junit:$junitVersion"
     testCompile "org.hamcrest:hamcrest-core:$hamcrestVersion"
     testCompile "org.hamcrest:hamcrest-library:$hamcrestVersion"
+    testCompile "nl.jqno.equalsverifier:equalsverifier:$equalsverifierVersion"
 
     testRuntime "com.sun.grizzly:grizzly-servlet-webserver:$grizzlyServletWebserverVersion"
     testRuntime "org.apache.httpcomponents:httpclient:$httpclientVersion"

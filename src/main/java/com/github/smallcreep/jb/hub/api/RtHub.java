@@ -1,11 +1,14 @@
 package com.github.smallcreep.jb.hub.api;
 
+import com.jcabi.aspects.Immutable;
+import com.jcabi.aspects.Loggable;
 import com.jcabi.http.Request;
 import com.jcabi.http.request.ApacheRequest;
 import com.jcabi.http.wire.AutoRedirectingWire;
 import com.jcabi.manifests.Manifests;
 import java.net.URI;
 import javax.ws.rs.core.HttpHeaders;
+import lombok.EqualsAndHashCode;
 
 /**
  * JetBrains Hub client entry point.
@@ -15,6 +18,9 @@ import javax.ws.rs.core.HttpHeaders;
  * @see <a href="https://www.jetbrains.com/help/hub/Resources-for-Developers.html">HUB API</a>
  * @since 0.1
  */
+@Immutable
+@Loggable(Loggable.DEBUG)
+@EqualsAndHashCode(of = "req")
 public final class RtHub implements Hub {
 
     /**
@@ -70,7 +76,7 @@ public final class RtHub implements Hub {
         this.req = req.header(HttpHeaders.USER_AGENT, RtHub.USER_AGENT)
             .through(AutoRedirectingWire.class)
             .uri()
-            .path("/api/v4")
+            .path("/hub/api/rest")
             .back();
     }
 
@@ -81,6 +87,6 @@ public final class RtHub implements Hub {
 
     @Override
     public Users users() {
-        return null;
+        return new RtUsers(this.req, this);
     }
 }

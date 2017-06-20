@@ -4,7 +4,10 @@ import com.jcabi.http.mock.MkAnswer;
 import com.jcabi.http.mock.MkContainer;
 import com.jcabi.http.mock.MkGrizzlyContainer;
 import com.jcabi.manifests.Manifests;
+import java.net.URI;
 import javax.ws.rs.core.HttpHeaders;
+import nl.jqno.equalsverifier.EqualsVerifier;
+import org.hamcrest.CoreMatchers;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -68,6 +71,35 @@ public final class RtHubTest {
                 Matchers.equalTo(HttpHeaders.AUTHORIZATION),
                 Matchers.hasItem(
                     "token"
+                )
+            )
+        );
+    }
+
+    /**
+     * Equals and HashCode check.
+     * @throws Exception If fails
+     */
+    @Test
+    public void equalsAndHashCode() throws Exception {
+        EqualsVerifier.forClass(RtHub.class).verify();
+    }
+
+    /**
+     * Users get return correct users.
+     * @throws Exception If fails
+     */
+    @Test
+    public void usersGet() throws Exception {
+        final Hub hub = new RtHub(
+            new URI("hub.com"),
+            "token"
+        );
+        MatcherAssert.assertThat(
+            hub.users(),
+            CoreMatchers.equalTo(
+                new RtUsers(
+                    hub
                 )
             )
         );
