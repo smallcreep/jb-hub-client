@@ -1,7 +1,5 @@
 package com.github.smallcreep.jb.hub.api;
 
-import com.github.smallcreep.json.JsonReadable;
-
 /**
  * JetBrains Hub User API.
  *
@@ -10,6 +8,10 @@ import com.github.smallcreep.json.JsonReadable;
  * @see <a href="https://www.jetbrains.com/help/hub/HUB-REST-API_Users_Get-User.html">User API</a>
  * @since 0.1
  */
-public interface User extends JsonReadable {
+public final class RtUsers implements Users {
 
+    @Override
+    public User self() {
+        return null;
+    }
 }

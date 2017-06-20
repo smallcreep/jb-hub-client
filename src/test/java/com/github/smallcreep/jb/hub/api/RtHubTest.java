@@ -3,7 +3,6 @@ package com.github.smallcreep.jb.hub.api;
 import com.jcabi.http.mock.MkAnswer;
 import com.jcabi.http.mock.MkContainer;
 import com.jcabi.http.mock.MkGrizzlyContainer;
-import com.jcabi.http.request.JdkRequest;
 import com.jcabi.manifests.Manifests;
 import javax.ws.rs.core.HttpHeaders;
 import org.hamcrest.MatcherAssert;

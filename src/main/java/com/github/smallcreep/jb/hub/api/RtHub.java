@@ -12,10 +12,14 @@ import javax.ws.rs.core.HttpHeaders;
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
+ * @see <a href="https://www.jetbrains.com/help/hub/Resources-for-Developers.html">HUB API</a>
  * @since 0.1
  */
-public class RtHub implements Hub {
+public final class RtHub implements Hub {
 
+    /**
+     * Version of us.
+     */
     private static final String USER_AGENT = String.format(
         "jb-hub-api-client %s %s %s",
         Manifests.read("Hub-Version"),
