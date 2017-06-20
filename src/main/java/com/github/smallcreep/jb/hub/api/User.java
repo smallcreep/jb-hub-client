@@ -12,4 +12,9 @@ import com.github.smallcreep.json.JsonReadable;
  */
 public interface User extends JsonReadable {
 
+    /**
+     * Get its owner.
+     * @return Users
+     */
+    Users users();
 }

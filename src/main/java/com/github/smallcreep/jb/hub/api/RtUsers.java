@@ -16,7 +16,7 @@ import lombok.EqualsAndHashCode;
 @Immutable
 @Loggable(Loggable.DEBUG)
 @EqualsAndHashCode(of = {"request", "hub"})
-public final class RtUsers implements Users {
+final class RtUsers implements Users {
 
     /**
      * RESTful request.
@@ -32,7 +32,7 @@ public final class RtUsers implements Users {
      * Ctor.
      * @param hub Hub
      */
-    public RtUsers(final Hub hub) {
+    RtUsers(final Hub hub) {
         this(hub.entry(), hub);
     }
 
@@ -41,8 +41,8 @@ public final class RtUsers implements Users {
      * @param request Entry request
      * @param hub Hub
      */
-    public RtUsers(final Request request, final Hub hub) {
-        this.request = request;
+    RtUsers(final Request request, final Hub hub) {
+        this.request = request.uri().path("/users").back();
         this.hub = hub;
     }
 
@@ -53,6 +53,6 @@ public final class RtUsers implements Users {
 
     @Override
     public User self() {
-        return null;
+        return new RtUser(this.request, this, "me");
     }
 }

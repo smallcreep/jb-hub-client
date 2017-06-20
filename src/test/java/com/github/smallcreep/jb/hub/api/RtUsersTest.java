@@ -1,5 +1,7 @@
 package com.github.smallcreep.jb.hub.api;
 
+import com.jcabi.http.Request;
+import com.jcabi.http.request.JdkRequest;
 import java.net.URI;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import org.hamcrest.CoreMatchers;
@@ -39,6 +41,31 @@ public final class RtUsersTest {
             ).hub(),
             CoreMatchers.equalTo(
                 hub
+            )
+        );
+    }
+
+    /**
+     * Self get return correct user.
+     * @throws Exception If fails
+     */
+    @Test
+    public void selfGet() throws Exception {
+        final Request req = new JdkRequest("");
+        final RtUsers users = new RtUsers(
+            req,
+            new RtHub(
+                req
+            )
+        );
+        MatcherAssert.assertThat(
+            users.self(),
+            CoreMatchers.equalTo(
+                new RtUser(
+                    req.uri().path("/users").back(),
+                    users,
+                    "me"
+                )
             )
         );
     }

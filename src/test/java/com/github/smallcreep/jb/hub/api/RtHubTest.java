@@ -51,6 +51,28 @@ public final class RtHubTest {
     }
 
     /**
+     * RtHub return Request with path.
+     * @throws Exception If fails
+     */
+    @Test
+    public void path() throws Exception {
+        final MkContainer container = new MkGrizzlyContainer()
+            .next(
+                new MkAnswer.Simple("hello, world!")
+            ).start();
+        new RtHub(
+            container.home()
+        ).entry().fetch();
+        container.stop();
+        MatcherAssert.assertThat(
+            container.take().uri(),
+            CoreMatchers.equalTo(
+                new URI("/hub/api/rest")
+            )
+        );
+    }
+
+    /**
      * RtHub return Request with Authorization token.
      * @throws Exception If fails
      */

@@ -48,8 +48,8 @@ dependencies {
     runtime "com.sun.jersey:jersey-client:$jerseyClientVersion"
 
     testCompile "junit:junit:$junitVersion"
-    testCompile "org.hamcrest:hamcrest-core:$hamcrestVersion"
-    testCompile "org.hamcrest:hamcrest-library:$hamcrestVersion"
+    compile "org.hamcrest:hamcrest-core:$hamcrestVersion"
+    compile "org.hamcrest:hamcrest-library:$hamcrestVersion"
     testCompile "nl.jqno.equalsverifier:equalsverifier:$equalsverifierVersion"
 
     testRuntime "com.sun.grizzly:grizzly-servlet-webserver:$grizzlyServletWebserverVersion"
