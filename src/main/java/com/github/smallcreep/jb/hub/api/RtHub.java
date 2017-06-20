@@ -18,9 +18,9 @@ public class RtHub implements Hub {
 
     private static final String USER_AGENT = String.format(
         "jb-hub-api-client %s %s %s",
-        Manifests.read("Gilatb-Version"),
-        Manifests.read("Gitlab-Build"),
-        Manifests.read("Gitlab-Date")
+        Manifests.read("Hub-Version"),
+        Manifests.read("Hub-Build"),
+        Manifests.read("Hub-Date")
     );
 
     /**
@@ -68,6 +68,11 @@ public class RtHub implements Hub {
             .uri()
             .path("/api/v4")
             .back();
+    }
+
+    @Override
+    public Request entry() {
+        return this.req;
     }
 
     @Override

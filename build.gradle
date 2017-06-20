@@ -28,6 +28,11 @@ project.ext {
     jcabiManifestsVersion = "1.1"
     jcabiHttpVersion = "1.17"
     jsr311ApiVersion = "1.1.1"
+    hamcrestVersion = "1.3"
+    grizzlyServletWebserverVersion = "2.0.0-M3"
+    jerseyClientVersion = "1.19.3"
+    log4jVersion = "2.8.2"
+    httpclientVersion = "4.5.3"
 }
 
 dependencies {
@@ -37,7 +42,17 @@ dependencies {
     compile "com.jcabi:jcabi-http:$jcabiHttpVersion"
     compile "javax.ws.rs:jsr311-api:$jsr311ApiVersion"
 
+    runtime "com.sun.jersey:jersey-client:$jerseyClientVersion"
+
     testCompile "junit:junit:$junitVersion"
+    testCompile "org.hamcrest:hamcrest-core:$hamcrestVersion"
+    testCompile "org.hamcrest:hamcrest-library:$hamcrestVersion"
+
+    testRuntime "com.sun.grizzly:grizzly-servlet-webserver:$grizzlyServletWebserverVersion"
+    testRuntime "org.apache.httpcomponents:httpclient:$httpclientVersion"
+
+    testRuntimeClasspath "org.apache.logging.log4j:log4j-slf4j-impl:$log4jVersion"
+    testRuntimeClasspath "org.apache.logging.log4j:log4j-core:$log4jVersion"
 }
 
 tasks.withType(FindBugs) {
