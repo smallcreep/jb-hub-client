@@ -1,5 +1,6 @@
 package com.github.smallcreep.jb.hub.api;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
@@ -19,7 +20,7 @@ public final class OAuth2ClientTest {
     @Test
     public void headerBaseEncode() throws Exception {
         MatcherAssert.assertThat(
-            new OAuth2Client(
+            new OAuth2Client.Simple(
                 "client_id",
                 "client_secret"
             ).header(),
@@ -27,5 +28,14 @@ public final class OAuth2ClientTest {
                 "Basic Y2xpZW50X2lkOmNsaWVudF9zZWNyZXQ="
             )
         );
+    }
+
+    /**
+     * Equals and HashCode check.
+     * @throws Exception If fails
+     */
+    @Test
+    public void equalsAndHashCode() throws Exception {
+        EqualsVerifier.forClass(OAuth2Client.Simple.class).verify();
     }
 }

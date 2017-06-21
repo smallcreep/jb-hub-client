@@ -14,15 +14,15 @@ import org.hamcrest.Matchers;
 import org.junit.Test;
 
 /**
- * Test Case for {@link AuthByPass}.
+ * Test Case for {@link Auth}.
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.1
  */
-public final class AuthByPassTest {
+public final class AuthTest {
 
     /**
-     * Check {@link AuthByPass} generate correct request.
+     * Check {@link Auth} generate correct request.
      * @throws Exception If fails
      */
     @Test
@@ -35,9 +35,9 @@ public final class AuthByPassTest {
                         + "\"access_token\": \"token123\"}"
                 )
             ).start();
-        new AuthByPass(
+        new Auth.AuthByPass(
             container.home(),
-            new OAuth2Client(
+            new OAuth2Client.Simple(
                 "client_id",
                 "client_secret"
             ),
@@ -92,7 +92,7 @@ public final class AuthByPassTest {
     }
 
     /**
-     * Check {@link AuthByPass#hub()} return Hub.
+     * Check {@link Auth#hub()} return Hub.
      * @throws Exception If fails
      */
     @Test
@@ -106,9 +106,9 @@ public final class AuthByPassTest {
                 )
             ).start();
         MatcherAssert.assertThat(
-            new AuthByPass(
+            new Auth.AuthByPass(
                 container.home(),
-                new OAuth2Client(
+                new OAuth2Client.Simple(
                     "client_id",
                     "client_secret"
                 ),
