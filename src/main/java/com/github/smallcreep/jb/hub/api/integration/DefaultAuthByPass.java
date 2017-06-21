@@ -5,6 +5,7 @@ import com.github.smallcreep.jb.hub.api.Hub;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Arrays;
 import org.cactoos.list.ArrayAsIterable;
 
 /**
