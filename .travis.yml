@@ -1,7 +1,7 @@
 language: java
 sudo: required
 script:
-- "./gradlew clean build -PQuality --scan --stacktrace"
+- "./gradlew clean build -PQuality --scan"
 jdk:
 - oraclejdk8
 before_install:
