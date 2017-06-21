@@ -29,6 +29,12 @@ final class RtUser implements User {
      */
     private final Users users;
 
+    /**
+     * Ctor.
+     * @param request Request
+     * @param users Owner users
+     * @param id User Id
+     */
     RtUser(
         final Request request,
         final Users users,

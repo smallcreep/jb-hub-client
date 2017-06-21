@@ -37,7 +37,7 @@ public final class RtHubTest {
         MatcherAssert.assertThat(
             container.take().headers(),
             Matchers.hasEntry(
-                Matchers.equalTo("User-Agent"),
+                Matchers.equalTo(HttpHeaders.USER_AGENT),
                 Matchers.hasItem(
                     String.format(
                         "jb-hub-api-client %s %s %s",

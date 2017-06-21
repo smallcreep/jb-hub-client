@@ -52,7 +52,10 @@ public final class RtUserTest {
     public void pathFromUsers() throws Exception {
         final MkContainer container = new MkGrizzlyContainer()
             .next(
-                new MkAnswer.Simple(HttpURLConnection.HTTP_OK, "{\"body\":\"hi\"}")
+                new MkAnswer.Simple(
+                    HttpURLConnection.HTTP_OK,
+                    "{\"body\":\"hi\"}"
+                )
             ).start();
         new RtHub(
             container.home()
@@ -74,7 +77,10 @@ public final class RtUserTest {
     public void path() throws Exception {
         final MkContainer container = new MkGrizzlyContainer()
             .next(
-                new MkAnswer.Simple(HttpURLConnection.HTTP_OK, "{\"body\":\"hi\"}")
+                new MkAnswer.Simple(
+                    HttpURLConnection.HTTP_OK,
+                    "{\"body\":\"hi\"}"
+                )
             ).start();
         new RtUser(
             new JdkRequest(
