@@ -1,13 +1,7 @@
 group 'com.smallcreep'
 version '1.0-SNAPSHOT'
 
-apply from: rootProject.file('basic.gradle')
-if (project.hasProperty('Quality')) {
-    apply from: rootProject.file('quality.gradle')
-}
-if (project.hasProperty('Unchecked')) {
-    apply from: rootProject.file('unchecked.gradle')
-}
+apply from: rootProject.file('gradle/basic.gradle')
 
 repositories {
     mavenCentral()
@@ -55,5 +49,8 @@ dependencies {
 }
 
 test {
-    systemProperty "failsafe.gitlab.key", System.getProperty("failsafe.gitlab.key")
+    systemProperty "failsafe.hub.username", System.getProperty("failsafe.hub.username")
+    systemProperty "failsafe.hub.password", System.getProperty("failsafe.hub.password")
+    systemProperty "failsafe.hub.service", System.getProperty("failsafe.hub.service")
+    systemProperty "failsafe.hub.secret", System.getProperty("failsafe.hub.secret")
 }

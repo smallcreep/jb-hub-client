@@ -1,0 +1,16 @@
+apply plugin: 'java'
+apply plugin: 'wrapper'
+
+if (project.hasProperty('Quality')) {
+    apply from: rootProject.file('gradle/quality.gradle')
+}
+if (project.hasProperty('Unchecked')) {
+    apply from: rootProject.file('gradle/unchecked.gradle')
+}
+
+wrapper {
+    gradleVersion = '4.0'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
