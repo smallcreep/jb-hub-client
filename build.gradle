@@ -49,6 +49,7 @@ dependencies {
 }
 
 test {
+    println System.getenv("failsafe.hub.username")
     systemProperties = [
             "failsafe.hub.username": System.getenv("failsafe.hub.username"),
             "failsafe.hub.password": System.getenv("failsafe.hub.password"),
