@@ -1,6 +1,17 @@
 group 'com.smallcreep'
 version '1.0-SNAPSHOT'
 
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.gradle:build-scan-plugin:1.8"
+    }
+}
+
 apply from: rootProject.file('gradle/basic.gradle')
 
 repositories {
@@ -49,7 +60,10 @@ dependencies {
 }
 
 test {
-    println System.getenv("failsafe.hub.username")
+    beforeTest { descriptor ->
+        logger.lifecycle("Running test: " + descriptor)
+        logger.lifecycle(System.getenv("failsafe.hub.username"))
+    }
     systemProperties = [
             "failsafe.hub.username": System.getenv("failsafe.hub.username"),
             "failsafe.hub.password": System.getenv("failsafe.hub.password"),

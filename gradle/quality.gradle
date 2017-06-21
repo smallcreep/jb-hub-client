@@ -1,9 +1,15 @@
+apply plugin: "com.gradle.build-scan"
 apply plugin: 'project-report'
 apply plugin: 'findbugs'
 apply plugin: 'jacoco'
 apply plugin: 'build-dashboard'
 apply plugin: 'pmd'
 apply plugin: 'checkstyle'
+
+buildScan {
+    licenseAgreementUrl = 'https://gradle.com/terms-of-service'
+    licenseAgree = 'yes'
+}
 
 tasks.withType(FindBugs) {
     reports {
