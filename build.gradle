@@ -62,7 +62,7 @@ dependencies {
 test {
     beforeTest { descriptor ->
         logger.lifecycle("Running test: " + descriptor)
-        logger.lifecycle(System.getenv("failsafe.hub.username"))
+        logger.lifecycle(System.getenv("username"))
     }
     systemProperties = [
             "failsafe.hub.username": System.getenv("failsafe.hub.username"),
