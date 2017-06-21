@@ -27,7 +27,7 @@ public final class DefaultOAuth2Test {
      */
     @Before
     public void setUp() throws Exception {
-        this.properties = System.getProperties();
+        this.properties = (Properties) System.getProperties().clone();
     }
 
     /**

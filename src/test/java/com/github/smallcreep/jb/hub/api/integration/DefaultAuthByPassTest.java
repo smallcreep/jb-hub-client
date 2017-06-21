@@ -31,7 +31,7 @@ public final class DefaultAuthByPassTest {
      */
     @Before
     public void setUp() throws Exception {
-        this.properties = System.getProperties();
+        this.properties = (Properties) System.getProperties().clone();
     }
 
     /**

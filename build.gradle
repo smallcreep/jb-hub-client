@@ -49,8 +49,12 @@ dependencies {
 }
 
 test {
-    systemProperty "failsafe.hub.username", System.getProperty("failsafe.hub.username")
-    systemProperty "failsafe.hub.password", System.getProperty("failsafe.hub.password")
-    systemProperty "failsafe.hub.service", System.getProperty("failsafe.hub.service")
-    systemProperty "failsafe.hub.secret", System.getProperty("failsafe.hub.secret")
+    systemProperties = [
+            "failsafe.hub.username": System.getenv("failsafe.hub.username"),
+            "failsafe.hub.password": System.getenv("failsafe.hub.password"),
+            "failsafe.hub.service" : System.getenv("failsafe.hub.service"),
+            "failsafe.hub.secret"  : System.getenv("failsafe.hub.secret"),
+            "failsafe.hub.uri"     : System.getenv("failsafe.hub.uri"),
+            "failsafe.hub.scopes"  : System.getenv("failsafe.hub.scopes")
+    ]
 }
