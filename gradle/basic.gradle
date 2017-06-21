@@ -7,6 +7,9 @@ if (project.hasProperty('Quality')) {
 if (project.hasProperty('Unchecked')) {
     apply from: rootProject.file('gradle/unchecked.gradle')
 }
+if (project.hasProperty('Integration')) {
+    apply from: rootProject.file('gradle/integration.gradle')
+}
 
 wrapper {
     gradleVersion = '4.0'
@@ -14,3 +17,7 @@ wrapper {
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+
+test {
+    include "com/github/smallcreep/**/*Test.*"
+}

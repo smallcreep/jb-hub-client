@@ -12,7 +12,7 @@ import org.junit.Test;
  * @version $Id$
  * @since 0.1
  */
-public final class RtHubITTest {
+public final class RtHubITCase {
 
     /**
      * Get self, from hub.
