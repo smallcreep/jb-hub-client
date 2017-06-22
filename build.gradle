@@ -10,11 +10,8 @@ buildscript {
     }
     dependencies {
         classpath "com.gradle:build-scan-plugin:1.8"
-        classpath "com.netflix.nebula:nebula-release-plugin:4.2.0"
     }
 }
-
-apply plugin: 'nebula.nebula-release'
 
 apply from: rootProject.file('gradle/basic.gradle')
 
@@ -73,11 +70,3 @@ test {
             "failsafe.hub.scopes"  : System.getenv("scopes")
     ]
 }
-/*
-
-release {
-    Set<String> releaseBranchPatterns = [/master/, /HEAD/] as Set
-    Set<String> excludeBranchPatterns = [] as Set
-    addReleaseBranchPattern(releaseBranchPatterns)
-    addExcludeBranchPattern(excludeBranchPatterns)
-}*/
