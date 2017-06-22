@@ -1,0 +1,20 @@
+docker:
+  image: yegor256/java8
+install: |
+  sudo curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh
+         | sudo bash
+         | sudo apt-get install git-lfs
+         | git lfs install
+         | git lfs pull
+architect:
+- smallcreep
+merge:
+  script: |
+    ./gradlew clean build -PQuality -PIntegration --scan --info
+    ./gradlew clean
+deploy:
+  script: |
+    ./gradlew clean build -PQuality -PIntegration --scan --info
+release:
+  script: |-
+    ./gradlew clean build -PQuality -PIntegration --scan --info
