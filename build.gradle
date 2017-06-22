@@ -1,5 +1,5 @@
-group 'com.smallcreep'
-version '1.0-SNAPSHOT'
+group 'com.github.smallcreep'
+version '0.0.1-SNAPSHOT'
 
 buildscript {
     repositories {
@@ -14,6 +14,9 @@ buildscript {
 }
 
 apply from: rootProject.file('gradle/basic.gradle')
+
+apply plugin: 'maven'
+apply plugin: 'signing'
 
 repositories {
     mavenCentral()
@@ -69,4 +72,69 @@ test {
             "failsafe.hub.uri"     : System.getenv("uri"),
             "failsafe.hub.scopes"  : System.getenv("scopes")
     ]
+}
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+uploadArchives {
+    def ossrhUsername = System.getenv("OSSRH_USERNAME")
+    def ossrhPassword = System.getenv("OSSRH_PASSWORD")
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name 'Fluent Api client for JetBrains HUB'
+                packaging 'jar'
+                // optionally artifactId can be defined here
+                description 'Fluent Api client for JetBrains HUB'
+                url 'https://github.com/smallcreep/jb-hub-client'
+
+                scm {
+                    connection 'scm:svn:http://foo.googlecode.com/svn/trunk/'
+                    developerConnection 'scm:svn:https://foo.googlecode.com/svn/trunk/'
+                    url 'http://foo.googlecode.com/svn/trunk/'
+                }
+
+                licenses {
+                    license {
+                        name 'MIT'
+                        url 'https://raw.githubusercontent.com/smallcreep/jb-hub-client/master/LICENSE'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'smallcreep'
+                        name 'Ilia Rogozhin'
+                        email 'ilia.rogozhin@gmail.com'
+                    }
+                }
+            }
+        }
+    }
 }
