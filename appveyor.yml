@@ -12,7 +12,7 @@ branches:
 os: Windows Server 2012
 install:
   - cmd: java -version
-  - cmd: (if not exist "C:\Users\appveyor\.gradle" mkdir "C:\Users\appveyor\.gradle") && (echo. >> "%C:\Users\appveyor\.gradle\gradle.properties" && echo org.gradle.daemon=false >> "C:\Users\appveyor\.gradle\gradle.properties")
+  - cmd: (if not exist "C:\Users\appveyor\.gradle" mkdir "C:\Users\appveyor\.gradle") && (echo. >> "C:\Users\appveyor\.gradle\gradle.properties" && echo org.gradle.daemon=false >> "C:\Users\appveyor\.gradle\gradle.properties")
 build_script:
   - gradlew.bat clean assemble --info --scan
 test_script:
