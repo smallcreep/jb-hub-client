@@ -20,4 +20,4 @@ deploy:
     ./gradlew clean build -PQuality -PIntegration --scan --info
 release:
   script: |-
-    ./gradlew clean build -PPublish -PVer=${tag}--scan --info
+    ./gradlew clean build upload -PPublish -PVer=${tag}--scan --info
