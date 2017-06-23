@@ -64,12 +64,12 @@ dependencies {
 
 test {
     systemProperties = [
-            "failsafe.hub.username": (!System.getProperty('hubUsername').empty ? System.getProperty('hubUsername') : System.getenv("username")),
-            "failsafe.hub.password": (!System.getProperty('hubPassword').empty ? System.getProperty('hubPassword') : System.getenv("password")),
-            "failsafe.hub.service" : (!System.getProperty('hubService').empty ? System.getProperty('hubService') : System.getenv("service")),
-            "failsafe.hub.secret"  : (!System.getProperty('hubSecret').empty ? System.getProperty('hubSecret') : System.getenv("secret")),
-            "failsafe.hub.uri"     : (!System.getProperty('hubUri').empty ? System.getProperty('hubUri') : System.getenv("uri")),
-            "failsafe.hub.scopes"  : (!System.getProperty('hubScopes').empty ? System.getProperty('hubScopes') : System.getenv("scopes"))
+            "failsafe.hub.username": (!System.getProperty('hubUsername') ? System.getProperty('hubUsername') : System.getenv("username")),
+            "failsafe.hub.password": (!System.getProperty('hubPassword') ? System.getProperty('hubPassword') : System.getenv("password")),
+            "failsafe.hub.service" : (!System.getProperty('hubService') ? System.getProperty('hubService') : System.getenv("service")),
+            "failsafe.hub.secret"  : (!System.getProperty('hubSecret') ? System.getProperty('hubSecret') : System.getenv("secret")),
+            "failsafe.hub.uri"     : (!System.getProperty('hubUri') ? System.getProperty('hubUri') : System.getenv("uri")),
+            "failsafe.hub.scopes"  : (!System.getProperty('hubScopes') ? System.getProperty('hubScopes') : System.getenv("scopes"))
     ]
 }
 
