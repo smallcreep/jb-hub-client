@@ -64,7 +64,7 @@ public interface Auth {
          * @param scopes Scopes
          *
          * @throws IOException If fails
-         * @@checkstyle ParameterNumberCheck (8 lines)
+         * @checkstyle ParameterNumberCheck (8 lines)
          */
         public AuthByPass(
             final URI uri,
