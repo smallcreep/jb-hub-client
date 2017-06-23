@@ -63,6 +63,7 @@ dependencies {
 }
 
 test {
+    println System.getenv("uri")
     systemProperties = [
             "failsafe.hub.username": (System.getProperty('hubUsername') ? System.getProperty('hubUsername') : System.getenv("username")),
             "failsafe.hub.password": (System.getProperty('hubPassword') ? System.getProperty('hubPassword') : System.getenv("password")),
