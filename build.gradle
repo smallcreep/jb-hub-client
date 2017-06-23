@@ -1,5 +1,5 @@
 group 'com.github.smallcreep'
-version '0.0.1-SNAPSHOT'
+version(project.hasProperty('Ver') ? project.property('Ver') : '1.0-SNAPSHOT')
 
 buildscript {
     repositories {
@@ -16,7 +16,6 @@ buildscript {
 apply from: rootProject.file('gradle/basic.gradle')
 
 apply plugin: 'maven'
-apply plugin: 'signing'
 
 repositories {
     mavenCentral()
@@ -65,78 +64,50 @@ dependencies {
 
 test {
     systemProperties = [
-            "failsafe.hub.username": System.getenv("username"),
-            "failsafe.hub.password": System.getenv("password"),
-            "failsafe.hub.service" : System.getenv("service"),
-            "failsafe.hub.secret"  : System.getenv("secret"),
-            "failsafe.hub.uri"     : System.getenv("uri"),
-            "failsafe.hub.scopes"  : System.getenv("scopes")
+            "failsafe.hub.username": (!System.getProperty('hubUsername').empty ? System.getProperty('hubUsername') : System.getenv("username")),
+            "failsafe.hub.password": (!System.getProperty('hubPassword').empty ? System.getProperty('hubPassword') : System.getenv("password")),
+            "failsafe.hub.service" : (!System.getProperty('hubService').empty ? System.getProperty('hubService') : System.getenv("service")),
+            "failsafe.hub.secret"  : (!System.getProperty('hubSecret').empty ? System.getProperty('hubSecret') : System.getenv("secret")),
+            "failsafe.hub.uri"     : (!System.getProperty('hubUri').empty ? System.getProperty('hubUri') : System.getenv("uri")),
+            "failsafe.hub.scopes"  : (!System.getProperty('hubScopes').empty ? System.getProperty('hubScopes') : System.getenv("scopes"))
     ]
 }
 
-task javadocJar(type: Jar) {
-    classifier = 'javadoc'
-    from javadoc
-}
-
-tasks.withType(Javadoc) {
-    options.tags = [ "checkstyle" ]
-}
-
-task sourcesJar(type: Jar) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-artifacts {
-    archives javadocJar, sourcesJar
-}
-
-signing {
-    sign configurations.archives
-}
-
 uploadArchives {
-    def ossrhUsername = System.getenv("OSSRH_USERNAME")
-    def ossrhPassword = System.getenv("OSSRH_PASSWORD")
     repositories {
         mavenDeployer {
-            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: ossrhUsername, password: ossrhPassword)
-            }
-
-            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                authentication(userName: ossrhUsername, password: ossrhPassword)
-            }
-
             pom.project {
-                name 'Fluent Api client for JetBrains HUB'
                 packaging 'jar'
-                // optionally artifactId can be defined here
+                name 'JB HUB Client'
                 description 'Fluent Api client for JetBrains HUB'
                 url 'https://github.com/smallcreep/jb-hub-client'
-
-                scm {
-                    connection 'scm:svn:http://foo.googlecode.com/svn/trunk/'
-                    developerConnection 'scm:svn:https://foo.googlecode.com/svn/trunk/'
-                    url 'http://foo.googlecode.com/svn/trunk/'
-                }
-
+                inceptionYear '2017'
                 licenses {
                     license {
                         name 'MIT'
                         url 'https://raw.githubusercontent.com/smallcreep/jb-hub-client/master/LICENSE'
                     }
                 }
-
                 developers {
                     developer {
-                        id 'smallcreep'
+                        id '1'
                         name 'Ilia Rogozhin'
                         email 'ilia.rogozhin@gmail.com'
+                        roles {
+                            role 'Architect'
+                            role 'Developer'
+                        }
+                        timezone '+3'
                     }
+                }
+                issueManagement {
+                    system 'GitHub'
+                    url 'https://github.com/smallcreep/jb-hub-client/issues'
+                }
+                scm {
+                    connection 'scm:git:git@github.com:smallcreep/jb-hub-client.git'
+                    developerConnection 'scm:git:git@github.com:smallcreep/jb-hub-client.git'
+                    url 'https://github.com/smallcreep/jb-hub-client'
                 }
             }
         }

@@ -5,3 +5,5 @@
 classes/
 build/
 out/
+gradle.properties
+secring.gpg

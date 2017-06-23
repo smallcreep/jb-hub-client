@@ -10,6 +10,9 @@ if (project.hasProperty('Unchecked')) {
 if (project.hasProperty('Integration')) {
     apply from: rootProject.file('gradle/integration.gradle')
 }
+if (project.hasProperty('Publish')) {
+    apply from: rootProject.file('gradle/publish.gradle')
+}
 
 wrapper {
     gradleVersion = '4.0'

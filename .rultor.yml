@@ -1,5 +1,8 @@
 docker:
   image: yegor256/java8
+decrypt:
+  gradle.properties: "jb-hub-client/scrt/gradle.properties.asc"
+  secring.gpg: "jb-hub-client/scrt/secring.gpg.asc"
 install: |
   sudo curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh
          | sudo bash
@@ -17,4 +20,4 @@ deploy:
     ./gradlew clean build -PQuality -PIntegration --scan --info
 release:
   script: |-
-    ./gradlew clean build -PQuality -PIntegration --scan --info
+    ./gradlew clean build -PPublish -PVer=${tag}--scan --info
