@@ -3,11 +3,6 @@ docker:
 decrypt:
   gradle.properties: "repo/gradle.properties.asc"
   secring.gpg: "repo/secret.gpg.asc"
-install: |
-  sudo curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh
-  sudo apt-get install git-lfs
-  git lfs install
-  git lfs pull
 architect:
 - smallcreep
 merge:
