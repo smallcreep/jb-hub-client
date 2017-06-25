@@ -9,7 +9,7 @@ install: |-
   mkdir ~/.ssh
   touch ~/.ssh/known_hosts
   ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-  git config lfs.url = ""https://github.com/smallcreep/jb-hub-client.git/info/lfs""
+  git config lfs.url "https://github.com/smallcreep/jb-hub-client.git/info/lfs"
   git lfs install
   git lfs pull
 architect:
