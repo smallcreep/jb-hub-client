@@ -3,6 +3,9 @@ docker:
 decrypt:
   gradle.properties: "repo/gradle.properties.asc"
   secring.gpg: "repo/secret.gpg.asc"
+install: |
+  git lfs install
+  git lfs pull
 architect:
 - smallcreep
 merge:
