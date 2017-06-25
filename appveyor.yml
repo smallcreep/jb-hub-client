@@ -18,6 +18,6 @@ install:
 build_script:
   - gradlew.bat clean assemble --info --scan
 test_script:
-  - gradlew.bat clean check --info -PQuality -PIntegration --scan
+  - gradlew.bat clean check --info -PQuality --scan
 cache:
   - C:\Users\appveyor\.gradle
