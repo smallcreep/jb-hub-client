@@ -21,9 +21,12 @@ merge:
   script: |
     ./gradlew clean build -PQuality -PIntegration --scan --info
     ./gradlew clean
+  squash: true
 deploy:
   script: |
     ./gradlew clean build -PQuality -PIntegration --scan --info
+  squash: true
 release:
   script: |-
     ./gradlew clean build upload -PPublish -PVer=${tag} --scan --info
+  squash: true
