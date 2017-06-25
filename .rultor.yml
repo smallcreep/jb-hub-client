@@ -2,7 +2,7 @@ docker:
   image: yegor256/java8
 decrypt:
   gradle.properties: "repo/gradle.properties.asc"
-  secring.gpg: "repo/secret.gpg.asc"
+  secret.gpg: "repo/secret.gpg.asc"
 install: |-
   curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
   sudo apt-get install git-lfs
@@ -13,7 +13,7 @@ install: |-
   git lfs install
   git lfs pull
   mv /home/r/gradle.properties /home/r/repo/gradle.properties
-  mv /home/r/secring.gpg /home/r/repo/secring.gpg
+  mv /home/r/secret.gpg /home/r/repo/secret.gpg
 architect:
 - smallcreep
 merge:
