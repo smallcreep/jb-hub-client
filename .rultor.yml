@@ -6,6 +6,8 @@ decrypt:
 install: |-
   curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
   sudo apt-get install git-lfs
+  mkdir ~/.ssh
+  touch ~/.ssh/known_hosts
   ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
   git lfs install
   git lfs pull
