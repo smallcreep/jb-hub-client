@@ -4,29 +4,17 @@ decrypt:
   gradle.properties: "repo/gradle.properties.asc"
   secret.gpg: "repo/secret.gpg.asc"
 install: |-
-  curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
-  sudo apt-get install git-lfs
-  mkdir ~/.ssh
-  touch ~/.ssh/known_hosts
-  ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-  git config lfs.url "https://github.com/smallcreep/jb-hub-client.git/info/lfs"
-  git lfs install
-  git lfs pull
   mv /home/r/gradle.properties /home/r/repo/gradle.properties
   mv /home/r/secret.gpg /home/r/repo/secret.gpg
-  rm /home/r/repo/.git/hooks/pre-push
 architect:
 - smallcreep
 merge:
   script: |
     ./gradlew clean build -PQuality -PIntegration --scan --info
     ./gradlew clean
-  squash: true
 deploy:
   script: |
     ./gradlew clean build -PQuality -PIntegration --scan --info
-  squash: true
 release:
   script: |-
     ./gradlew clean build upload -PPublish -PVer=${tag} --scan --info
-  squash: true
