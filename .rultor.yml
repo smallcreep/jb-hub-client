@@ -3,9 +3,8 @@ docker:
 decrypt:
   gradle.properties: "repo/gradle.properties.asc"
   secring.gpg: "repo/secret.gpg.asc"
-install: |
-  sudo curl -sSL https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh
-  sudo apt-get update
+install: |-
+  curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
   sudo apt-get install git-lfs
   git lfs install
   git lfs pull
