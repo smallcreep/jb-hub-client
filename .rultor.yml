@@ -12,6 +12,7 @@ install: |-
   git config lfs.url "https://github.com/smallcreep/jb-hub-client.git/info/lfs"
   git lfs install
   git lfs pull
+  cat gradle.properties
 architect:
 - smallcreep
 merge:
