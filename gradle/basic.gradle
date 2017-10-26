@@ -15,7 +15,7 @@ if (project.hasProperty('Publish')) {
 }
 
 wrapper {
-    gradleVersion = '4.0'
+    gradleVersion = '4.2.1'
 }
 
 sourceCompatibility = 1.8
