@@ -6,12 +6,10 @@ import com.jcabi.http.wire.AutoRedirectingWire;
 import com.jcabi.manifests.Manifests;
 import java.io.IOException;
 import java.net.URI;
-import java.util.AbstractMap;
-import java.util.Map;
 import javax.json.JsonObject;
 import javax.ws.rs.core.HttpHeaders;
-import org.cactoos.list.IterableAsList;
-import org.cactoos.list.IterableAsMap;
+import org.cactoos.map.MapEntry;
+import org.cactoos.map.MapOf;
 import org.cactoos.text.FormattedText;
 
 /**
@@ -79,24 +77,22 @@ public interface Auth {
                     .header(HttpHeaders.AUTHORIZATION, client.header())
                     .body()
                     .formParams(
-                        new IterableAsMap<>(
-                            new IterableAsList<Map.Entry<String, String>>(
-                                new AbstractMap.SimpleEntry<>(
-                                    "grant_type",
-                                    "password"
-                                ),
-                                new AbstractMap.SimpleEntry<>(
-                                    "username",
-                                    username
-                                ),
-                                new AbstractMap.SimpleEntry<>(
-                                    "password",
-                                    password
-                                ),
-                                new AbstractMap.SimpleEntry<>(
-                                    "scope",
-                                    String.join(" ", scopes)
-                                )
+                        new MapOf<String, String>(
+                            new MapEntry<>(
+                                "grant_type",
+                                "password"
+                            ),
+                            new MapEntry<>(
+                                "username",
+                                username
+                            ),
+                            new MapEntry<>(
+                                "password",
+                                password
+                            ),
+                            new MapEntry<>(
+                                "scope",
+                                String.join(" ", scopes)
                             )
                         )
                     )

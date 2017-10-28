@@ -5,7 +5,7 @@ import com.github.smallcreep.jb.hub.api.Hub;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import org.cactoos.list.ArrayAsIterable;
+import org.cactoos.iterable.IterableOf;
 
 /**
  * Authorization by pass with info from System properties.
@@ -31,7 +31,7 @@ public final class DefaultAuthByPass implements Auth {
             new DefaultOAuth2(),
             System.getProperty("failsafe.hub.username"),
             System.getProperty("failsafe.hub.password"),
-            new ArrayAsIterable<>(
+            new IterableOf<>(
                 System.getProperty("failsafe.hub.scopes").split(",")
             )
         );

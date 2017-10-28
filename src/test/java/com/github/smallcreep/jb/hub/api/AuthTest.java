@@ -8,7 +8,7 @@ import com.jcabi.manifests.Manifests;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import javax.ws.rs.core.HttpHeaders;
-import org.cactoos.list.IterableAsList;
+import org.cactoos.iterable.IterableOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -43,7 +43,7 @@ public final class AuthTest {
             ),
             "user",
             "pass",
-            new IterableAsList<>(
+            new IterableOf<>(
                 "first",
                 "second"
             )
@@ -114,7 +114,7 @@ public final class AuthTest {
                 ),
                 "user",
                 "pass",
-                new IterableAsList<>(
+                new IterableOf<String>(
                     "first",
                     "second"
                 )

@@ -8,6 +8,7 @@ import org.junit.Test;
 
 /**
  * Integration test for github.
+ *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.1
