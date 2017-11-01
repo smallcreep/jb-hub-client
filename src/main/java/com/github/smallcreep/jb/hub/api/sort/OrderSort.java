@@ -10,7 +10,7 @@ import org.cactoos.text.FormattedText;
  * @version $Id$
  * @since 0.2.0
  */
-final class SortOrder implements Sort {
+final class OrderSort implements Sort {
 
     /**
      * Origin Sort.
@@ -27,8 +27,8 @@ final class SortOrder implements Sort {
      * @param field Field name
      * @param order Order
      */
-    SortOrder(final String field, final String order) {
-        this(new SortDefault(field), order);
+    OrderSort(final String field, final String order) {
+        this(new DefaultSort(field), order);
     }
 
     /**
@@ -36,7 +36,7 @@ final class SortOrder implements Sort {
      * @param origin Origin sort
      * @param order Order
      */
-    SortOrder(final Sort origin, final String order) {
+    OrderSort(final Sort origin, final String order) {
         this.origin = origin;
         this.order = order;
     }

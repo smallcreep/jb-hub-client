@@ -5,13 +5,13 @@ import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 
 /**
- * Test Case for {@link SortDefault}.
+ * Test Case for {@link DefaultSort}.
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
  */
-public final class SortDefaultTest {
+public final class DefaultSortTest {
 
     /**
      * Check default sort return encapsulated field name.
@@ -22,7 +22,7 @@ public final class SortDefaultTest {
     public void defaultSortField() throws Exception {
         MatcherAssert.assertThat(
             "Default sort doesn't return encapsulated field name!",
-            new SortDefault("first"),
+            new DefaultSort("first"),
             new ScalarHasValue<>("first")
         );
     }

@@ -5,12 +5,13 @@ import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 
 /**
- * Test Case for {@link SortDesc}.
+ * Test Case for {@link DescSort}.
+ *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
  */
-public final class SortDescTest {
+public final class DescSortTest {
 
     /**
      * Check desc sort return encapsulated field name
@@ -22,7 +23,7 @@ public final class SortDescTest {
     public void orderDescField() throws Exception {
         MatcherAssert.assertThat(
             "Desc sort doesn't return field name with other suffix!",
-            new SortDesc("first"),
+            new DescSort("first"),
             new ScalarHasValue<>("first:desc")
         );
     }

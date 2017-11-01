@@ -9,7 +9,7 @@ import com.github.smallcreep.jb.hub.api.Sort;
  * @version $Id$
  * @since 0.2.0
  */
-public final class SortDefault implements Sort {
+public final class DefaultSort implements Sort {
 
     /**
      * Field name.
@@ -20,7 +20,7 @@ public final class SortDefault implements Sort {
      * Ctor.
      * @param field Field name
      */
-    public SortDefault(final String field) {
+    public DefaultSort(final String field) {
         this.field = field;
     }
 

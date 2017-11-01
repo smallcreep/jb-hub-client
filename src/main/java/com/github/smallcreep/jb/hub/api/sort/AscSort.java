@@ -9,7 +9,7 @@ import com.github.smallcreep.jb.hub.api.Sort;
  * @version $Id$
  * @since 0.2.0
  */
-public final class SortAsc implements Sort {
+public final class AscSort implements Sort {
 
     /**
      * Order Sort.
@@ -20,16 +20,16 @@ public final class SortAsc implements Sort {
      * Ctor.
      * @param field Field name
      */
-    public SortAsc(final String field) {
-        this(new SortDefault(field));
+    public AscSort(final String field) {
+        this(new DefaultSort(field));
     }
 
     /**
      * Ctor.
      * @param origin Origin sort
      */
-    public SortAsc(final Sort origin) {
-        this.order = new SortOrder(origin, "asc");
+    public AscSort(final Sort origin) {
+        this.order = new OrderSort(origin, "asc");
     }
 
     @Override
