@@ -21,6 +21,15 @@ repositories {
     mavenCentral()
 }
 
+jar {
+    def buildVersion = project.hasProperty('number') ? project.property('number') : '1.0-SNAPSHOT'
+    manifest {
+        attributes 'Hub-Version': version,
+                'Hub-Build': buildVersion,
+                'Hub-Date': new Date()
+    }
+}
+
 project.ext {
     junitVersion = "4.12"
     lombokVersion = "1.16.18"
