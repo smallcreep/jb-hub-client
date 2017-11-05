@@ -22,70 +22,68 @@
  * SOFTWARE.
  */
 
-package com.github.smallcreep.jb.hub.api.integration;
+package com.github.smallcreep.jb.hub.api.sort;
 
-import java.util.Properties;
-import nl.jqno.equalsverifier.EqualsVerifier;
-import org.hamcrest.CoreMatchers;
+import com.github.smallcreep.jb.hub.api.Sort;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import org.cactoos.Text;
+import org.cactoos.TextHasString;
+import org.cactoos.iterable.IterableOf;
 import org.hamcrest.MatcherAssert;
-import org.junit.After;
-import org.junit.Before;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 
 /**
- * Test Case for {@link DefaultOAuth2}.
+ * Test Case for {@link IteratorSortToText}.
+ *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
- * @since 0.1
+ * @since 0.2.0
  */
-public final class DefaultOAuth2Test {
+public final class IteratorSortToTextTest {
 
     /**
-     * System properties.
-     */
-    private Properties properties;
-
-    /**
-     * Test Case setUp.
-     * @throws Exception If fails
-     */
-    @Before
-    public void setUp() throws Exception {
-        this.properties = (Properties) System.getProperties().clone();
-    }
-
-    /**
-     * Test Case tearDown.
-     * @throws Exception If fails
-     */
-    @After
-    public void tearDown() throws Exception {
-        System.setProperties(this.properties);
-    }
-
-    /**
-     * Get header return header with Base64 encode client id and secret
-     * from properties.
+     * Iterator has correct values.
      * @throws Exception If fails
      */
     @Test
-    public void headerBaseEncode() throws Exception {
-        System.setProperty("failsafe.hub.service", "client_id");
-        System.setProperty("failsafe.hub.secret", "client_secret");
+    public void checkValues() throws Exception {
+        final String first = "first";
+        final String second = "second";
         MatcherAssert.assertThat(
-            new DefaultOAuth2().header(),
-            CoreMatchers.equalTo(
-                "Basic Y2xpZW50X2lkOmNsaWVudF9zZWNyZXQ="
+            "Iterator sort to texts doesn't has correct values.",
+            () -> new IteratorSortToText(
+                new IterableOf<Sort>(
+                    new DefaultSort(first),
+                    new DefaultSort(second)
+                ).iterator()
+            ),
+            Matchers.contains(
+                new TextHasString(
+                    first
+                ),
+                new TextHasString(
+                    second
+                )
             )
         );
     }
 
     /**
-     * Equals and HashCode check.
+     * Iterator throws {@link NoSuchElementException}.
+     *
      * @throws Exception If fails
      */
-    @Test
-    public void equalsAndHashCode() throws Exception {
-        EqualsVerifier.forClass(DefaultOAuth2.class).verify();
+    @Test(expected = NoSuchElementException.class)
+    public void iteratorThrowsNoSuchElement() throws Exception {
+        final Iterator<Text> iterator = new IteratorSortToText(
+            new IterableOf<Sort>(
+                new DefaultSort("first")
+            ).iterator()
+        );
+        while (true) {
+            iterator.next();
+        }
     }
 }

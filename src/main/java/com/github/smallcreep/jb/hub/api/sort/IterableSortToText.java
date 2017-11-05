@@ -25,52 +25,33 @@
 package com.github.smallcreep.jb.hub.api.sort;
 
 import com.github.smallcreep.jb.hub.api.Sort;
-import org.cactoos.text.FormattedText;
+import java.util.Iterator;
+import org.cactoos.Text;
 
 /**
- * Sort by Sort origin value in a set order.
+ * Transform {@link Iterable} {@link Sort} to {@link Iterable} {@link Text}.
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
  */
-final class OrderSort implements Sort {
+final class IterableSortToText implements Iterable<Text> {
 
     /**
-     * Origin Sort.
+     * Origin iterable.
      */
-    private final Sort origin;
-
-    /**
-     * Order.
-     */
-    private final String order;
+    private final Iterable<Sort> origin;
 
     /**
      * Ctor.
-     * @param field Field name
-     * @param order Order
+     * @param origin Origin iterable
      */
-    OrderSort(final String field, final String order) {
-        this(new DefaultSort(field), order);
-    }
-
-    /**
-     * Ctor.
-     * @param origin Origin sort
-     * @param order Order
-     */
-    OrderSort(final Sort origin, final String order) {
+    IterableSortToText(final Iterable<Sort> origin) {
         this.origin = origin;
-        this.order = order;
     }
 
     @Override
-    public String value() throws Exception {
-        return new FormattedText(
-            "%s:%s",
-            this.origin.value(),
-            this.order
-        ).asString();
+    public Iterator<Text> iterator() {
+        return new IteratorSortToText(this.origin.iterator());
     }
 }

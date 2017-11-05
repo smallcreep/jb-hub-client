@@ -34,7 +34,7 @@ project.ext {
     jerseyClientVersion = "1.19.4"
     log4jVersion = "2.8.2"
     httpclientVersion = "4.5.3"
-    equalsverifierVersion = "2.3"
+    equalsverifierVersion = "2.3.3"
     cactoosVersion = "0.20.2"
 }
 

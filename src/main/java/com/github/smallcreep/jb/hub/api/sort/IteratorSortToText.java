@@ -25,52 +25,48 @@
 package com.github.smallcreep.jb.hub.api.sort;
 
 import com.github.smallcreep.jb.hub.api.Sort;
-import org.cactoos.text.FormattedText;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import org.cactoos.Text;
+import org.cactoos.scalar.UncheckedScalar;
+import org.cactoos.text.TextOf;
 
 /**
- * Sort by Sort origin value in a set order.
+ * Transform {@link Iterator} {@link Sort} to {@link Iterator} {@link Text}.
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
  */
-final class OrderSort implements Sort {
+final class IteratorSortToText implements Iterator<Text> {
 
     /**
-     * Origin Sort.
+     * Origin iterator.
      */
-    private final Sort origin;
-
-    /**
-     * Order.
-     */
-    private final String order;
+    private final Iterator<Sort> origin;
 
     /**
      * Ctor.
-     * @param field Field name
-     * @param order Order
+     * @param origin Origin iterator
      */
-    OrderSort(final String field, final String order) {
-        this(new DefaultSort(field), order);
-    }
-
-    /**
-     * Ctor.
-     * @param origin Origin sort
-     * @param order Order
-     */
-    OrderSort(final Sort origin, final String order) {
+    IteratorSortToText(final Iterator<Sort> origin) {
         this.origin = origin;
-        this.order = order;
     }
 
     @Override
-    public String value() throws Exception {
-        return new FormattedText(
-            "%s:%s",
-            this.origin.value(),
-            this.order
-        ).asString();
+    public boolean hasNext() {
+        return this.origin.hasNext();
+    }
+
+    @Override
+    public Text next() {
+        if (this.hasNext()) {
+            return new TextOf(
+                new UncheckedScalar<>(
+                    this.origin.next()
+                ).value()
+            );
+        }
+        throw new NoSuchElementException();
     }
 }
