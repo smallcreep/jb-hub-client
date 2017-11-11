@@ -24,6 +24,7 @@
 
 package com.github.smallcreep.jb.hub.api.fields;
 
+import com.github.smallcreep.jb.hub.api.Field;
 import org.cactoos.ScalarHasValue;
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
@@ -47,8 +48,8 @@ public final class MultipleFieldsTest {
         MatcherAssert.assertThat(
             "Multiple fields doesn't return fields comma separated!",
             new MultipleFields(
-                new Field("first"),
-                new Field("second")
+                new Field.Simple("first"),
+                new Field.Simple("second")
             ),
             new ScalarHasValue<>("first, second")
         );

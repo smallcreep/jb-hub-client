@@ -24,6 +24,7 @@
 
 package com.github.smallcreep.jb.hub.api.sort;
 
+import com.github.smallcreep.jb.hub.api.Field;
 import com.github.smallcreep.jb.hub.api.Sort;
 
 /**
@@ -45,6 +46,14 @@ public final class AscSort implements Sort {
      * @param field Field name
      */
     public AscSort(final String field) {
+        this(new Field.Simple(field));
+    }
+
+    /**
+     * Ctor.
+     * @param field Field
+     */
+    public AscSort(final Field field) {
         this(new DefaultSort(field));
     }
 

@@ -24,6 +24,7 @@
 
 package com.github.smallcreep.jb.hub.api.sort;
 
+import com.github.smallcreep.jb.hub.api.Field;
 import com.github.smallcreep.jb.hub.api.Sort;
 
 /**
@@ -32,28 +33,32 @@ import com.github.smallcreep.jb.hub.api.Sort;
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
- *
- * @todo #6:15m/DEV Delete DefaultSort in favor
- *  of com.github.smallcreep.jb.hub.api.Field, please delete it from
- *  all *Sort classes.
  */
 public final class DefaultSort implements Sort {
 
     /**
-     * Field name.
+     * Field.
      */
-    private final String field;
+    private final Field field;
 
     /**
      * Ctor.
      * @param field Field name
      */
     public DefaultSort(final String field) {
+        this(new Field.Simple(field));
+    }
+
+    /**
+     * Ctor.
+     * @param field Field
+     */
+    public DefaultSort(final Field field) {
         this.field = field;
     }
 
     @Override
     public String value() throws Exception {
-        return this.field;
+        return this.field.value();
     }
 }

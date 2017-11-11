@@ -24,15 +24,14 @@
 
 package com.github.smallcreep.jb.hub.api.fields;
 
+import com.github.smallcreep.jb.hub.api.Field;
 import com.github.smallcreep.jb.hub.api.Fields;
-import com.github.smallcreep.misc.iterable.IterableScalarStringToText;
-import org.cactoos.Scalar;
 import org.cactoos.iterable.IterableOf;
 import org.cactoos.text.JoinedText;
 import org.cactoos.text.TextOf;
 
 /**
- * Show Multi fields.
+ * Show Multiple fields.
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
@@ -43,13 +42,13 @@ public final class MultipleFields implements Fields {
     /**
      * Origin Fields.
      */
-    private final Iterable<Scalar<String>> origins;
+    private final Iterable<Field> origins;
 
     /**
      * Ctor.
      * @param fields Origin Fields
      */
-    public MultipleFields(final Fields... fields) {
+    public MultipleFields(final Field... fields) {
         this(new IterableOf<>(fields));
     }
 
@@ -57,7 +56,7 @@ public final class MultipleFields implements Fields {
      * Ctor.
      * @param fields Origin Fields
      */
-    private MultipleFields(final Iterable<Scalar<String>> fields) {
+    private MultipleFields(final Iterable<Field> fields) {
         this.origins = fields;
     }
 
@@ -65,7 +64,7 @@ public final class MultipleFields implements Fields {
     public String value() throws Exception {
         return new JoinedText(
             new TextOf(", "),
-            new IterableScalarStringToText(this.origins)
+            new ItrbTextOfField(this.origins)
         ).asString();
     }
 }

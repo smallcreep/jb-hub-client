@@ -22,11 +22,51 @@
  * SOFTWARE.
  */
 
+package com.github.smallcreep.jb.hub.api.fields;
+
+import com.github.smallcreep.jb.hub.api.Field;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import org.cactoos.Text;
+import org.cactoos.scalar.UncheckedScalar;
+import org.cactoos.text.TextOf;
+
 /**
- * Iterable.
+ * Transform {@link Iterator} {@link Field} to {@link Iterator} {@link Text}.
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
  */
-package com.github.smallcreep.misc.iterable;
+public final class ItrtTextOfField implements Iterator<Text> {
+
+    /**
+     * Origin iterator.
+     */
+    private final Iterator<Field> origin;
+
+    /**
+     * Ctor.
+     * @param origin Origin iterator
+     */
+    public ItrtTextOfField(final Iterator<Field> origin) {
+        this.origin = origin;
+    }
+
+    @Override
+    public boolean hasNext() {
+        return this.origin.hasNext();
+    }
+
+    @Override
+    public Text next() {
+        if (this.hasNext()) {
+            return new TextOf(
+                new UncheckedScalar<>(
+                    this.origin.next()
+                ).value()
+            );
+        }
+        throw new NoSuchElementException();
+    }
+}

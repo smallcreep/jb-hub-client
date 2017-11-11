@@ -24,8 +24,6 @@
 
 package com.github.smallcreep.jb.hub.api;
 
-import org.cactoos.Scalar;
-
 /**
  * JetBrains Hub Sort Syntax.
  *
@@ -34,6 +32,6 @@ import org.cactoos.Scalar;
  * @see <a href="https://www.jetbrains.com/help/hub/Sort-Syntax.html">Sort Syntax</a>
  * @since 0.2.0
  */
-public interface Sort extends Scalar<String> {
+public interface Sort extends Field {
 
 }

@@ -22,11 +22,32 @@
  * SOFTWARE.
  */
 
+package com.github.smallcreep.jb.hub.api;
+
+import org.cactoos.ScalarHasValue;
+import org.hamcrest.MatcherAssert;
+import org.junit.Test;
+
 /**
- * Iterator.
- *
+ * Test Case for {@link Field}.
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
  */
-package com.github.smallcreep.misc.iterator;
+public final class FieldTest {
+
+    /**
+     * Check field return encapsulated field name.
+     *
+     * @throws Exception If fails
+     */
+    @Test
+    public void field() throws Exception {
+        MatcherAssert.assertThat(
+            "Field doesn't return encapsulated field name!",
+            new Field.Simple("first"),
+            new ScalarHasValue<>("first")
+        );
+    }
+
+}

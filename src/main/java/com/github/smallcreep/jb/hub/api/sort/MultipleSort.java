@@ -22,11 +22,50 @@
  * SOFTWARE.
  */
 
+package com.github.smallcreep.jb.hub.api.sort;
+
+import com.github.smallcreep.jb.hub.api.Field;
+import com.github.smallcreep.jb.hub.api.Sort;
+import com.github.smallcreep.jb.hub.api.fields.ItrbTextOfField;
+import org.cactoos.iterable.IterableOf;
+import org.cactoos.text.JoinedText;
+import org.cactoos.text.TextOf;
+
 /**
- * TestCase for {@link com.github.smallcreep.misc.iterator}.
+ * Sort by Multiple Sort values.
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
  */
-package com.github.smallcreep.misc.iterator;
+public final class MultipleSort implements Sort {
+
+    /**
+     * Origin Sorts.
+     */
+    private final Iterable<Field> origins;
+
+    /**
+     * Ctor.
+     * @param origins Origin Sorts
+     */
+    public MultipleSort(final Sort... origins) {
+        this(new IterableOf<>(origins));
+    }
+
+    /**
+     * Ctor.
+     * @param origins Origin Sorts
+     */
+    private MultipleSort(final Iterable<Field> origins) {
+        this.origins = origins;
+    }
+
+    @Override
+    public String value() throws Exception {
+        return new JoinedText(
+            new TextOf(", "),
+            new ItrbTextOfField(this.origins)
+        ).asString();
+    }
+}

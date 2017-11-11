@@ -22,51 +22,35 @@
  * SOFTWARE.
  */
 
-package com.github.smallcreep.misc.iterator;
+package com.github.smallcreep.jb.hub.api.sort;
 
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import org.cactoos.Scalar;
-import org.cactoos.Text;
-import org.cactoos.scalar.UncheckedScalar;
-import org.cactoos.text.TextOf;
+import org.cactoos.ScalarHasValue;
+import org.hamcrest.MatcherAssert;
+import org.junit.Test;
 
 /**
- * Transform {@link Iterator} {@link Scalar} to {@link Iterator} {@link Text}.
+ * Test Case for {@link MultipleSort}.
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
  */
-public final class IteratorScalarStringToText implements Iterator<Text> {
+public final class MultipleSortTest {
 
     /**
-     * Origin iterator.
+     * Check multi sort return fields comma separated.
+     *
+     * @throws Exception If fails
      */
-    private final Iterator<Scalar<String>> origin;
-
-    /**
-     * Ctor.
-     * @param origin Origin iterator
-     */
-    public IteratorScalarStringToText(final Iterator<Scalar<String>> origin) {
-        this.origin = origin;
-    }
-
-    @Override
-    public boolean hasNext() {
-        return this.origin.hasNext();
-    }
-
-    @Override
-    public Text next() {
-        if (this.hasNext()) {
-            return new TextOf(
-                new UncheckedScalar<>(
-                    this.origin.next()
-                ).value()
-            );
-        }
-        throw new NoSuchElementException();
+    @Test
+    public void orderMultiFields() throws Exception {
+        MatcherAssert.assertThat(
+            "Multi sort doesn't return fields comma separated!",
+            new MultipleSort(
+                new DefaultSort("first"),
+                new DefaultSort("second")
+            ),
+            new ScalarHasValue<>("first, second")
+        );
     }
 }

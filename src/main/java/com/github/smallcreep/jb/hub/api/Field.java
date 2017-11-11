@@ -22,32 +22,40 @@
  * SOFTWARE.
  */
 
-package com.github.smallcreep.jb.hub.api.fields;
+package com.github.smallcreep.jb.hub.api;
 
-import org.cactoos.ScalarHasValue;
-import org.hamcrest.MatcherAssert;
-import org.junit.Test;
+import org.cactoos.Scalar;
 
 /**
- * Test Case for {@link Field}.
+ * JetBrains Hub one field.
+ *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
  */
-public final class FieldTest {
+public interface Field extends Scalar<String> {
 
     /**
-     * Check field return encapsulated field name.
-     *
-     * @throws Exception If fails
+     * Simple implementation one field for item.
      */
-    @Test
-    public void field() throws Exception {
-        MatcherAssert.assertThat(
-            "Field doesn't return encapsulated field name!",
-            new Field("first"),
-            new ScalarHasValue<>("first")
-        );
-    }
+    final class Simple implements Field {
 
+        /**
+         * Field name.
+         */
+        private final String field;
+
+        /**
+         * Ctor.
+         * @param field Field name
+         */
+        public Simple(final String field) {
+            this.field = field;
+        }
+
+        @Override
+        public String value() throws Exception {
+            return this.field;
+        }
+    }
 }

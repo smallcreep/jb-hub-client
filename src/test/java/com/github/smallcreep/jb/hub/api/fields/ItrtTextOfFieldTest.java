@@ -22,8 +22,12 @@
  * SOFTWARE.
  */
 
-package com.github.smallcreep.misc.iterable;
+package com.github.smallcreep.jb.hub.api.fields;
 
+import com.github.smallcreep.jb.hub.api.Field;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import org.cactoos.Text;
 import org.cactoos.TextHasString;
 import org.cactoos.iterable.IterableOf;
 import org.hamcrest.MatcherAssert;
@@ -31,17 +35,16 @@ import org.hamcrest.Matchers;
 import org.junit.Test;
 
 /**
- * Test Case for {@link IterableScalarStringToText}.
+ * Test Case for {@link ItrtTextOfField}.
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
  */
-public final class IterableScalarStringToTextTest {
+public final class ItrtTextOfFieldTest {
 
     /**
-     * Iterable has correct values.
-     *
+     * Iterator has correct values.
      * @throws Exception If fails
      */
     @Test
@@ -49,12 +52,12 @@ public final class IterableScalarStringToTextTest {
         final String first = "first";
         final String second = "second";
         MatcherAssert.assertThat(
-            "Iterable sort to texts doesn't has correct values.",
-            new IterableScalarStringToText(
-                new IterableOf<>(
+            "Iterator sort to texts doesn't has correct values.",
+            () -> new ItrtTextOfField(
+                new IterableOf<Field>(
                     () -> first,
                     () -> second
-                )
+                ).iterator()
             ),
             Matchers.contains(
                 new TextHasString(
@@ -65,5 +68,27 @@ public final class IterableScalarStringToTextTest {
                 )
             )
         );
+    }
+
+    /**
+     * Iterator throws {@link NoSuchElementException}.
+     *
+     * @throws Exception If fails
+     */
+    @Test(expected = NoSuchElementException.class)
+    public void iteratorThrowsNoSuchElement() throws Exception {
+        final String first = "first";
+        final Iterator<Text> iterator = new ItrtTextOfField(
+            new IterableOf<Field>(
+                () -> first
+            ).iterator()
+        );
+        MatcherAssert.assertThat(
+            iterator.next(),
+            new TextHasString(
+                first
+            )
+        );
+        iterator.next();
     }
 }

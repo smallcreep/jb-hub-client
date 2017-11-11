@@ -24,33 +24,34 @@
 
 package com.github.smallcreep.jb.hub.api.fields;
 
-import com.github.smallcreep.jb.hub.api.Fields;
+import com.github.smallcreep.jb.hub.api.Field;
+import java.util.Iterator;
+import org.cactoos.Text;
 
 /**
- * Simple implementation Fields Syntax.
- * One field for item.
+ * Transform {@link Iterable} {@link Field} to {@link Iterable} {@link Text}.
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
  */
-final class Field implements Fields {
+public final class ItrbTextOfField implements Iterable<Text> {
 
     /**
-     * Field name.
+     * Origin iterable.
      */
-    private final String field;
+    private final Iterable<Field> origin;
 
     /**
      * Ctor.
-     * @param field Field name
+     * @param origin Origin iterable
      */
-    Field(final String field) {
-        this.field = field;
+    public ItrbTextOfField(final Iterable<Field> origin) {
+        this.origin = origin;
     }
 
     @Override
-    public String value() throws Exception {
-        return this.field;
+    public Iterator<Text> iterator() {
+        return new ItrtTextOfField(this.origin.iterator());
     }
 }

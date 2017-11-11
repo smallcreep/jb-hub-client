@@ -24,6 +24,7 @@
 
 package com.github.smallcreep.jb.hub.api.sort;
 
+import com.github.smallcreep.jb.hub.api.Field;
 import com.github.smallcreep.jb.hub.api.Sort;
 import org.cactoos.text.FormattedText;
 
@@ -37,7 +38,7 @@ import org.cactoos.text.FormattedText;
 final class OrderSort implements Sort {
 
     /**
-     * Origin Sort.
+     * Origin sort.
      */
     private final Sort origin;
 
@@ -52,6 +53,15 @@ final class OrderSort implements Sort {
      * @param order Order
      */
     OrderSort(final String field, final String order) {
+        this(new Field.Simple(field), order);
+    }
+
+    /**
+     * Ctor.
+     * @param field Field
+     * @param order Order
+     */
+    OrderSort(final Field field, final String order) {
         this(new DefaultSort(field), order);
     }
 

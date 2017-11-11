@@ -22,11 +22,48 @@
  * SOFTWARE.
  */
 
+package com.github.smallcreep.jb.hub.api.fields;
+
+import org.cactoos.TextHasString;
+import org.cactoos.iterable.IterableOf;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
+import org.junit.Test;
+
 /**
- * TestCase for {@link com.github.smallcreep.misc.iterable}.
+ * Test Case for {@link ItrbTextOfField}.
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
  */
-package com.github.smallcreep.misc.iterable;
+public final class ItrbTextOfFieldTest {
+
+    /**
+     * Iterable has correct values.
+     *
+     * @throws Exception If fails
+     */
+    @Test
+    public void checkValues() throws Exception {
+        final String first = "first";
+        final String second = "second";
+        MatcherAssert.assertThat(
+            "Iterable sort to texts doesn't has correct values.",
+            new ItrbTextOfField(
+                new IterableOf<>(
+                    () -> first,
+                    () -> second
+                )
+            ),
+            Matchers.contains(
+                new TextHasString(
+                    first
+                ),
+                new TextHasString(
+                    second
+                )
+            )
+        );
+    }
+}

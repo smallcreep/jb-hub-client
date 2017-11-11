@@ -24,8 +24,6 @@
 
 package com.github.smallcreep.jb.hub.api;
 
-import org.cactoos.Scalar;
-
 /**
  * JetBrains Hub Fields Syntax.
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
@@ -33,6 +31,6 @@ import org.cactoos.Scalar;
  * @see <a href="https://www.jetbrains.com/help/hub/Fields-Syntax.html">Fields Syntax</a>
  * @since 0.2.0
  */
-public interface Fields extends Scalar<String> {
+public interface Fields extends Field {
 
 }

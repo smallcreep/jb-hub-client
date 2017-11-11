@@ -24,7 +24,9 @@
 
 package com.github.smallcreep.jb.hub.api.sort;
 
+import com.github.smallcreep.jb.hub.api.Field;
 import com.github.smallcreep.jb.hub.api.Sort;
+
 /**
  * Sort by Sort origin value in a desc order.
  *
@@ -44,6 +46,14 @@ public final class DescSort implements Sort {
      * @param field Field name
      */
     public DescSort(final String field) {
+        this(new Field.Simple(field));
+    }
+
+    /**
+     * Ctor.
+     * @param field Field
+     */
+    public DescSort(final Field field) {
         this(new DefaultSort(field));
     }
 
