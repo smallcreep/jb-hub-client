@@ -30,6 +30,10 @@ package com.github.smallcreep.jb.hub.api.fields;
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
+ *
+ * @todo #6:15m/DEV Implements class for sub objects.
+ *  Use a sub-selector to request a set of specific sub-fields of arrays
+ *  or objects by placing expressions in parentheses "( )".
  */
 final class SubFields {
 }

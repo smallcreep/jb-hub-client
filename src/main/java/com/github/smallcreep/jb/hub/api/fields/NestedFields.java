@@ -30,6 +30,10 @@ package com.github.smallcreep.jb.hub.api.fields;
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
+ *
+ * @todo #6:15m/DEV Implements class for nested field.
+ *  Use a/b to select a field b that is nested within field a;
+ *  use a/b/c to select a field c nested within b.
  */
 final class NestedFields {
 

@@ -30,6 +30,13 @@ package com.github.smallcreep.jb.hub.api.fields;
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
+ *
+ * @todo #6:15m/DEV Implements class for any nested field.
+ *  Use wildcards in field selections, if needed.
+ *  For example a/* to select all fields object a.
+ *  For example items/pagemap/*\/title For each element in the items array,
+ *  returns only the title field (if present) of all objects that are
+ *  children of pagemap.
  */
 final class AnyNestedFields {
 }
