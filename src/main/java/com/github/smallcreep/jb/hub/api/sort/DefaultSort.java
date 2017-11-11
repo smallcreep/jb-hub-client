@@ -34,7 +34,8 @@ import com.github.smallcreep.jb.hub.api.Sort;
  * @since 0.2.0
  *
  * @todo #6:15m/DEV Delete DefaultSort in favor
- *  of com.github.smallcreep.jb.hub.api.Field
+ *  of com.github.smallcreep.jb.hub.api.Field, please delete it from
+ *  all *Sort classes.
  */
 public final class DefaultSort implements Sort {
 
