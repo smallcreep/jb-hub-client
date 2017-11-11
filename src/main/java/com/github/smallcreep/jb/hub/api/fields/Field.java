@@ -22,36 +22,35 @@
  * SOFTWARE.
  */
 
-package com.github.smallcreep.jb.hub.api.sort;
+package com.github.smallcreep.jb.hub.api.fields;
 
-import com.github.smallcreep.jb.hub.api.Sort;
-import java.util.Iterator;
-import org.cactoos.Text;
+import com.github.smallcreep.jb.hub.api.Fields;
 
 /**
- * Transform {@link Iterable} {@link Sort} to {@link Iterable} {@link Text}.
+ * Simple implementation Fields Syntax.
+ * One field for item.
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
  */
-final class IterableSortToText implements Iterable<Text> {
+final class Field implements Fields {
 
     /**
-     * Origin iterable.
+     * Field name.
      */
-    private final Iterable<Sort> origin;
+    private final String field;
 
     /**
      * Ctor.
-     * @param origin Origin iterable
+     * @param field Field name
      */
-    IterableSortToText(final Iterable<Sort> origin) {
-        this.origin = origin;
+    Field(final String field) {
+        this.field = field;
     }
 
     @Override
-    public Iterator<Text> iterator() {
-        return new IteratorSortToText(this.origin.iterator());
+    public String value() throws Exception {
+        return this.field;
     }
 }

@@ -22,9 +22,9 @@
  * SOFTWARE.
  */
 
-package com.github.smallcreep.jb.hub.api.sort;
+package com.github.smallcreep.jb.hub.api.fields;
 
-import com.github.smallcreep.jb.hub.api.Sort;
+import com.github.smallcreep.jb.hub.api.Fields;
 import com.github.smallcreep.misc.iterable.IterableScalarStringToText;
 import org.cactoos.Scalar;
 import org.cactoos.iterable.IterableOf;
@@ -32,33 +32,33 @@ import org.cactoos.text.JoinedText;
 import org.cactoos.text.TextOf;
 
 /**
- * Sort by Multi Sort values.
+ * Show Multi fields.
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
  */
-public final class MultiSort implements Sort {
+public final class MultipleFields implements Fields {
 
     /**
-     * Origin Sorts.
+     * Origin Fields.
      */
     private final Iterable<Scalar<String>> origins;
 
     /**
      * Ctor.
-     * @param origins Origin Sorts
+     * @param fields Origin Fields
      */
-    public MultiSort(final Sort... origins) {
-        this(new IterableOf<>(origins));
+    public MultipleFields(final Fields... fields) {
+        this(new IterableOf<>(fields));
     }
 
     /**
      * Ctor.
-     * @param origins Origin Sorts
+     * @param fields Origin Fields
      */
-    private MultiSort(final Iterable<Scalar<String>> origins) {
-        this.origins = origins;
+    private MultipleFields(final Iterable<Scalar<String>> fields) {
+        this.origins = fields;
     }
 
     @Override

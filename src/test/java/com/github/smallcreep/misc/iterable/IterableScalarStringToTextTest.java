@@ -22,12 +22,8 @@
  * SOFTWARE.
  */
 
-package com.github.smallcreep.jb.hub.api.sort;
+package com.github.smallcreep.misc.iterable;
 
-import com.github.smallcreep.jb.hub.api.Sort;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import org.cactoos.Text;
 import org.cactoos.TextHasString;
 import org.cactoos.iterable.IterableOf;
 import org.hamcrest.MatcherAssert;
@@ -35,16 +31,17 @@ import org.hamcrest.Matchers;
 import org.junit.Test;
 
 /**
- * Test Case for {@link IteratorSortToText}.
+ * Test Case for {@link IterableScalarStringToText}.
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
  */
-public final class IteratorSortToTextTest {
+public final class IterableScalarStringToTextTest {
 
     /**
-     * Iterator has correct values.
+     * Iterable has correct values.
+     *
      * @throws Exception If fails
      */
     @Test
@@ -52,12 +49,12 @@ public final class IteratorSortToTextTest {
         final String first = "first";
         final String second = "second";
         MatcherAssert.assertThat(
-            "Iterator sort to texts doesn't has correct values.",
-            () -> new IteratorSortToText(
-                new IterableOf<Sort>(
-                    new DefaultSort(first),
-                    new DefaultSort(second)
-                ).iterator()
+            "Iterable sort to texts doesn't has correct values.",
+            new IterableScalarStringToText(
+                new IterableOf<>(
+                    () -> first,
+                    () -> second
+                )
             ),
             Matchers.contains(
                 new TextHasString(
@@ -68,22 +65,5 @@ public final class IteratorSortToTextTest {
                 )
             )
         );
-    }
-
-    /**
-     * Iterator throws {@link NoSuchElementException}.
-     *
-     * @throws Exception If fails
-     */
-    @Test(expected = NoSuchElementException.class)
-    public void iteratorThrowsNoSuchElement() throws Exception {
-        final Iterator<Text> iterator = new IteratorSortToText(
-            new IterableOf<Sort>(
-                new DefaultSort("first")
-            ).iterator()
-        );
-        while (true) {
-            iterator.next();
-        }
     }
 }

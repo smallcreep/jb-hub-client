@@ -22,51 +22,32 @@
  * SOFTWARE.
  */
 
-package com.github.smallcreep.jb.hub.api.sort;
+package com.github.smallcreep.jb.hub.api.fields;
 
-import com.github.smallcreep.jb.hub.api.Sort;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import org.cactoos.Text;
-import org.cactoos.scalar.UncheckedScalar;
-import org.cactoos.text.TextOf;
+import org.cactoos.ScalarHasValue;
+import org.hamcrest.MatcherAssert;
+import org.junit.Test;
 
 /**
- * Transform {@link Iterator} {@link Sort} to {@link Iterator} {@link Text}.
- *
+ * Test Case for {@link Field}.
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
  */
-final class IteratorSortToText implements Iterator<Text> {
+public final class FieldTest {
 
     /**
-     * Origin iterator.
+     * Check field return encapsulated field name.
+     *
+     * @throws Exception If fails
      */
-    private final Iterator<Sort> origin;
-
-    /**
-     * Ctor.
-     * @param origin Origin iterator
-     */
-    IteratorSortToText(final Iterator<Sort> origin) {
-        this.origin = origin;
+    @Test
+    public void field() throws Exception {
+        MatcherAssert.assertThat(
+            "Field doesn't return encapsulated field name!",
+            new Field("first"),
+            new ScalarHasValue<>("first")
+        );
     }
 
-    @Override
-    public boolean hasNext() {
-        return this.origin.hasNext();
-    }
-
-    @Override
-    public Text next() {
-        if (this.hasNext()) {
-            return new TextOf(
-                new UncheckedScalar<>(
-                    this.origin.next()
-                ).value()
-            );
-        }
-        throw new NoSuchElementException();
-    }
 }

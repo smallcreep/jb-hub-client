@@ -22,48 +22,14 @@
  * SOFTWARE.
  */
 
-package com.github.smallcreep.jb.hub.api.sort;
-
-import org.cactoos.TextHasString;
-import org.cactoos.iterable.IterableOf;
-import org.hamcrest.MatcherAssert;
-import org.hamcrest.Matchers;
-import org.junit.Test;
+package com.github.smallcreep.jb.hub.api.fields;
 
 /**
- * Test Case for {@link IterableSortToText}.
+ * Field for array sub objects.
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
  */
-public final class IterableSortToTextTest {
-
-    /**
-     * Iterable has correct values.
-     *
-     * @throws Exception If fails
-     */
-    @Test
-    public void checkValues() throws Exception {
-        final String first = "first";
-        final String second = "second";
-        MatcherAssert.assertThat(
-            "Iterable sort to texts doesn't has correct values.",
-            new IterableSortToText(
-                new IterableOf<>(
-                    new DefaultSort(first),
-                    new DefaultSort(second)
-                )
-            ),
-            Matchers.contains(
-                new TextHasString(
-                    first
-                ),
-                new TextHasString(
-                    second
-                )
-            )
-        );
-    }
+final class SubFields {
 }

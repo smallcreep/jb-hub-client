@@ -22,50 +22,37 @@
  * SOFTWARE.
  */
 
-package com.github.smallcreep.jb.hub.api.sort;
+package com.github.smallcreep.misc.iterable;
 
-import com.github.smallcreep.jb.hub.api.Sort;
-import com.github.smallcreep.misc.iterable.IterableScalarStringToText;
+import com.github.smallcreep.misc.iterator.IteratorScalarStringToText;
+import java.util.Iterator;
 import org.cactoos.Scalar;
-import org.cactoos.iterable.IterableOf;
-import org.cactoos.text.JoinedText;
-import org.cactoos.text.TextOf;
+import org.cactoos.Text;
 
 /**
- * Sort by Multi Sort values.
+ * Transform {@link Iterable} {@link Scalar} to {@link Iterable} {@link Text}.
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
  */
-public final class MultiSort implements Sort {
+public final class IterableScalarStringToText implements Iterable<Text> {
 
     /**
-     * Origin Sorts.
+     * Origin iterable.
      */
-    private final Iterable<Scalar<String>> origins;
-
-    /**
-     * Ctor.
-     * @param origins Origin Sorts
-     */
-    public MultiSort(final Sort... origins) {
-        this(new IterableOf<>(origins));
-    }
+    private final Iterable<Scalar<String>> origin;
 
     /**
      * Ctor.
-     * @param origins Origin Sorts
+     * @param origin Origin iterable
      */
-    private MultiSort(final Iterable<Scalar<String>> origins) {
-        this.origins = origins;
+    public IterableScalarStringToText(final Iterable<Scalar<String>> origin) {
+        this.origin = origin;
     }
 
     @Override
-    public String value() throws Exception {
-        return new JoinedText(
-            new TextOf(", "),
-            new IterableScalarStringToText(this.origins)
-        ).asString();
+    public Iterator<Text> iterator() {
+        return new IteratorScalarStringToText(this.origin.iterator());
     }
 }

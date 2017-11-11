@@ -22,50 +22,14 @@
  * SOFTWARE.
  */
 
-package com.github.smallcreep.jb.hub.api.sort;
-
-import com.github.smallcreep.jb.hub.api.Sort;
-import com.github.smallcreep.misc.iterable.IterableScalarStringToText;
-import org.cactoos.Scalar;
-import org.cactoos.iterable.IterableOf;
-import org.cactoos.text.JoinedText;
-import org.cactoos.text.TextOf;
+package com.github.smallcreep.jb.hub.api.fields;
 
 /**
- * Sort by Multi Sort values.
+ * Fields wildcard for nested object.
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
  */
-public final class MultiSort implements Sort {
-
-    /**
-     * Origin Sorts.
-     */
-    private final Iterable<Scalar<String>> origins;
-
-    /**
-     * Ctor.
-     * @param origins Origin Sorts
-     */
-    public MultiSort(final Sort... origins) {
-        this(new IterableOf<>(origins));
-    }
-
-    /**
-     * Ctor.
-     * @param origins Origin Sorts
-     */
-    private MultiSort(final Iterable<Scalar<String>> origins) {
-        this.origins = origins;
-    }
-
-    @Override
-    public String value() throws Exception {
-        return new JoinedText(
-            new TextOf(", "),
-            new IterableScalarStringToText(this.origins)
-        ).asString();
-    }
+final class AnyNestedFields {
 }

@@ -22,50 +22,51 @@
  * SOFTWARE.
  */
 
-package com.github.smallcreep.jb.hub.api.sort;
+package com.github.smallcreep.misc.iterator;
 
-import com.github.smallcreep.jb.hub.api.Sort;
-import com.github.smallcreep.misc.iterable.IterableScalarStringToText;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 import org.cactoos.Scalar;
-import org.cactoos.iterable.IterableOf;
-import org.cactoos.text.JoinedText;
+import org.cactoos.Text;
+import org.cactoos.scalar.UncheckedScalar;
 import org.cactoos.text.TextOf;
 
 /**
- * Sort by Multi Sort values.
+ * Transform {@link Iterator} {@link Scalar} to {@link Iterator} {@link Text}.
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
  */
-public final class MultiSort implements Sort {
+public final class IteratorScalarStringToText implements Iterator<Text> {
 
     /**
-     * Origin Sorts.
+     * Origin iterator.
      */
-    private final Iterable<Scalar<String>> origins;
-
-    /**
-     * Ctor.
-     * @param origins Origin Sorts
-     */
-    public MultiSort(final Sort... origins) {
-        this(new IterableOf<>(origins));
-    }
+    private final Iterator<Scalar<String>> origin;
 
     /**
      * Ctor.
-     * @param origins Origin Sorts
+     * @param origin Origin iterator
      */
-    private MultiSort(final Iterable<Scalar<String>> origins) {
-        this.origins = origins;
+    public IteratorScalarStringToText(final Iterator<Scalar<String>> origin) {
+        this.origin = origin;
     }
 
     @Override
-    public String value() throws Exception {
-        return new JoinedText(
-            new TextOf(", "),
-            new IterableScalarStringToText(this.origins)
-        ).asString();
+    public boolean hasNext() {
+        return this.origin.hasNext();
+    }
+
+    @Override
+    public Text next() {
+        if (this.hasNext()) {
+            return new TextOf(
+                new UncheckedScalar<>(
+                    this.origin.next()
+                ).value()
+            );
+        }
+        throw new NoSuchElementException();
     }
 }
