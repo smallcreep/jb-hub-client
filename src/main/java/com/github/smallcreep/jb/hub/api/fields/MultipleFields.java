@@ -56,14 +56,14 @@ public final class MultipleFields implements Fields {
      * Ctor.
      * @param fields Origin Fields
      */
-    private MultipleFields(final Iterable<Field> fields) {
+    public MultipleFields(final Iterable<Field> fields) {
         this.origins = fields;
     }
 
     @Override
     public String value() throws Exception {
         return new JoinedText(
-            new TextOf(", "),
+            new TextOf(","),
             new ItrbTextOfField(this.origins)
         ).asString();
     }

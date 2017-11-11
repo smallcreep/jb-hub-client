@@ -24,16 +24,64 @@
 
 package com.github.smallcreep.jb.hub.api.fields;
 
+import com.github.smallcreep.jb.hub.api.Field;
+import com.github.smallcreep.jb.hub.api.Fields;
+import org.cactoos.iterable.IterableOf;
+import org.cactoos.text.FormattedText;
+
 /**
- * Field for array sub objects.
+ * Fields for array sub objects.
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
- *
- * @todo #6:15m/DEV Implements class for sub objects.
- *  Use a sub-selector to request a set of specific sub-fields of arrays
- *  or objects by placing expressions in parentheses "( )".
  */
-final class SubFields {
+public final class SubFields implements Fields {
+
+    /**
+     * Field name array sub objects.
+     */
+    private final Field array;
+
+    /**
+     * Fields from sub objects.
+     */
+    private final MultipleFields fields;
+
+    /**
+     * Ctor.
+     * @param array Field name array sub objects
+     * @param fields Fields from sub objects
+     */
+    public SubFields(final Field array, final Field... fields) {
+        this(array, new IterableOf<>(fields));
+    }
+
+    /**
+     * Ctor.
+     * @param array Field name array sub objects
+     * @param fields Fields from sub objects
+     */
+    public SubFields(final Field array, final Iterable<Field> fields) {
+        this(array, new MultipleFields(fields));
+    }
+
+    /**
+     * Ctor.
+     * @param array Field name array sub objects
+     * @param fields Fields from sub objects
+     */
+    public SubFields(final Field array, final MultipleFields fields) {
+        this.array = array;
+        this.fields = fields;
+    }
+
+    @Override
+    public String value() throws Exception {
+        return new FormattedText(
+            "%s(%s)",
+            this.array.value(),
+            this.fields.value()
+        ).asString();
+    }
 }

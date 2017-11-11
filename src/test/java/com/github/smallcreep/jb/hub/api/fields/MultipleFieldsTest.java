@@ -51,7 +51,7 @@ public final class MultipleFieldsTest {
                 new Field.Simple("first"),
                 new Field.Simple("second")
             ),
-            new ScalarHasValue<>("first, second")
+            new ScalarHasValue<>("first,second")
         );
     }
 }

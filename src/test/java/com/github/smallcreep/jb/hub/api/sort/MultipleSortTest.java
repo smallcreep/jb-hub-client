@@ -50,7 +50,7 @@ public final class MultipleSortTest {
                 new DefaultSort("first"),
                 new DefaultSort("second")
             ),
-            new ScalarHasValue<>("first, second")
+            new ScalarHasValue<>("first,second")
         );
     }
 }
