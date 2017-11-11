@@ -1,14 +1,12 @@
 **Master:**
 
+[![DevOps By Rultor.com](http://www.rultor.com/b/yegor256/cactoos)](http://www.rultor.com/p/smallcreep/jb-hub-client)
+
 [![Build status](https://ci.appveyor.com/api/projects/status/asqovs1okkxow1w5/branch/master?svg=true)](https://ci.appveyor.com/project/smallcreep/jb-hub-client/branch/master)
 [![Build Status](https://travis-ci.org/smallcreep/jb-hub-client.svg?branch=master)](https://travis-ci.org/smallcreep/jb-hub-client)
 [![codecov](https://codecov.io/gh/smallcreep/jb-hub-client/branch/master/graph/badge.svg)](https://codecov.io/gh/smallcreep/jb-hub-client)
 [![Dependency Status](https://www.versioneye.com/user/projects/594d32ff6725bd00409fff0e/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/594d32ff6725bd00409fff0e)
-
-**Last build:**
-
-[![Build status](https://ci.appveyor.com/api/projects/status/asqovs1okkxow1w5?svg=true)](https://ci.appveyor.com/project/smallcreep/jb-hub-client)
-[![Build Status](https://travis-ci.org/smallcreep/jb-hub-client.svg)](https://travis-ci.org/smallcreep/jb-hub-client)
+[![PDD status](http://www.0pdd.com/svg?name=smallcreep/jb-hub-client)](http://www.0pdd.com/p?name=smallcreep/jb-hub-client)
 
 # JB-HUB-Client
 

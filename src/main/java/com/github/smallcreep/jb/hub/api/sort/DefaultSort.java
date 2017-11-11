@@ -29,6 +29,8 @@ import com.github.smallcreep.jb.hub.api.Sort;
 /**
  * Sort by field name in a default order.
  *
+ * @todo #6:15m/DEV Delete DefaultSort in favor of com.github.smallcreep.jb.hub.api.Field
+ *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
