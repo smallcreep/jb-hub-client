@@ -1,5 +1,4 @@
 --source=.
---verbose
 --exclude gradle/**
 --exclude build/**/*
 --rule min-words:10
