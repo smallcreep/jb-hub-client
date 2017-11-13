@@ -24,17 +24,50 @@
 
 package com.github.smallcreep.jb.hub.api.fields;
 
+import com.github.smallcreep.jb.hub.api.Field;
+import com.github.smallcreep.jb.hub.api.Fields;
+import org.cactoos.iterable.IterableOf;
+
 /**
- * Field for nested object.
+ * Fields for nested object.
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
- *
- * @todo #6:15m/DEV Implements class for nested field.
- *  Use a/b to select a field b that is nested within field a;
- *  use a/b/c to select a field c nested within b.
  */
-final class NestedFields {
+public final class NestedFields implements Fields {
 
+    /**
+     * Parent field.
+     */
+    private final Field parent;
+
+    /**
+     * Children fields.
+     */
+    private final Iterable<Field> children;
+
+    /**
+     * Ctor.
+     * @param parent Parent field.
+     * @param children Children fields
+     */
+    public NestedFields(final Field parent, final Field... children) {
+        this(parent, new IterableOf<>(children));
+    }
+
+    /**
+     * Ctor.
+     * @param parent Parent field.
+     * @param children Children fields
+     */
+    public NestedFields(final Field parent, final Iterable<Field> children) {
+        this.parent = parent;
+        this.children = children;
+    }
+
+    @Override
+    public String value() throws Exception {
+        return null;
+    }
 }
