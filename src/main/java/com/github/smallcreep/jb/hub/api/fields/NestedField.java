@@ -25,17 +25,16 @@
 package com.github.smallcreep.jb.hub.api.fields;
 
 import com.github.smallcreep.jb.hub.api.Field;
-import com.github.smallcreep.jb.hub.api.Fields;
-import org.cactoos.iterable.IterableOf;
+import org.cactoos.text.FormattedText;
 
 /**
- * Fields for nested object.
+ * Field for nested object.
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
  */
-public final class NestedFields implements Fields {
+public final class NestedField implements Field {
 
     /**
      * Parent field.
@@ -45,29 +44,24 @@ public final class NestedFields implements Fields {
     /**
      * Children fields.
      */
-    private final Iterable<Field> children;
+    private final Field child;
 
     /**
      * Ctor.
-     * @param parent Parent field.
-     * @param children Children fields
+     * @param parent Parent field
+     * @param child Children field
      */
-    public NestedFields(final Field parent, final Field... children) {
-        this(parent, new IterableOf<>(children));
-    }
-
-    /**
-     * Ctor.
-     * @param parent Parent field.
-     * @param children Children fields
-     */
-    public NestedFields(final Field parent, final Iterable<Field> children) {
+    public NestedField(final Field parent, final Field child) {
         this.parent = parent;
-        this.children = children;
+        this.child = child;
     }
 
     @Override
     public String value() throws Exception {
-        return null;
+        return new FormattedText(
+            "%s/%s",
+            this.parent.value(),
+            this.child.value()
+        ).asString();
     }
 }
