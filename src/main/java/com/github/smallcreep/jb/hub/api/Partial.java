@@ -24,36 +24,21 @@
 
 package com.github.smallcreep.jb.hub.api;
 
-import com.jcabi.http.Request;
-
 /**
- * JetBrains Hub client entry point.
+ * Partial request.
+ * For iterable request you can set max number of elements
+ * to return in the page.
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
- * @see <a href="https://www.jetbrains.com/help/hub/Resources-for-Developers.html">HUB API</a>
- * @since 0.1
+ * @since 0.2.0
  */
-public interface Hub {
+public interface Partial {
 
     /**
-     * RESTful request, an entry point to the Hub API.
-     *
-     * @return Request
+     * Set max number of elements to return in the page.
+     * @param max Max number of elements
+     * @return Self
      */
-    Request entry();
-
-    /**
-     * Get Users.
-     * @return Users.
-     * @see Users
-     */
-    Users users();
-
-    /**
-     * Get all projects.
-     * @return Projects
-     * @see Projects
-     */
-    Projects projects();
+    Partial max(int max);
 }

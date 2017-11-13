@@ -24,36 +24,21 @@
 
 package com.github.smallcreep.jb.hub.api;
 
-import com.jcabi.http.Request;
-
 /**
- * JetBrains Hub client entry point.
+ * Sortable interface use if you get array elements.
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
- * @see <a href="https://www.jetbrains.com/help/hub/Resources-for-Developers.html">HUB API</a>
- * @since 0.1
+ * @see <a href="https://www.jetbrains.com/help/hub/Sort-Syntax.html">Sort Syntax</a>
+ * @since 0.2.0
  */
-public interface Hub {
+public interface Sortable {
 
     /**
-     * RESTful request, an entry point to the Hub API.
-     *
-     * @return Request
+     * Set sort.
+     * @param sort Sort
+     * @return Self
      */
-    Request entry();
+    Sortable sort(Sort sort);
 
-    /**
-     * Get Users.
-     * @return Users.
-     * @see Users
-     */
-    Users users();
-
-    /**
-     * Get all projects.
-     * @return Projects
-     * @see Projects
-     */
-    Projects projects();
 }

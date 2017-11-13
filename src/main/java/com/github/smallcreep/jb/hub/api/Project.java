@@ -24,36 +24,15 @@
 
 package com.github.smallcreep.jb.hub.api;
 
-import com.jcabi.http.Request;
+import com.github.smallcreep.json.JsonReadable;
 
 /**
- * JetBrains Hub client entry point.
+ * Project JetBrains Hub.
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
- * @see <a href="https://www.jetbrains.com/help/hub/Resources-for-Developers.html">HUB API</a>
- * @since 0.1
+ * @see <a href="https://www.jetbrains.com/help/hub/HUB-REST-API_Projects_Get-Project.html">Project JetBrains Hub</a>
+ * @since 0.2.0
  */
-public interface Hub {
-
-    /**
-     * RESTful request, an entry point to the Hub API.
-     *
-     * @return Request
-     */
-    Request entry();
-
-    /**
-     * Get Users.
-     * @return Users.
-     * @see Users
-     */
-    Users users();
-
-    /**
-     * Get all projects.
-     * @return Projects
-     * @see Projects
-     */
-    Projects projects();
+public interface Project extends JsonReadable {
 }

@@ -24,36 +24,20 @@
 
 package com.github.smallcreep.jb.hub.api;
 
-import com.jcabi.http.Request;
-
 /**
- * JetBrains Hub client entry point.
+ * Subset request.
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
- * @see <a href="https://www.jetbrains.com/help/hub/Resources-for-Developers.html">HUB API</a>
- * @since 0.1
+ * @see <a href="https://www.jetbrains.com/help/hub/Fields-Syntax.html">Fields Syntax</a>
+ * @since 0.2.0
  */
-public interface Hub {
+public interface Subset {
 
     /**
-     * RESTful request, an entry point to the Hub API.
-     *
-     * @return Request
+     * Set fields for partial request.
+     * @param fields Fields
+     * @return Self
      */
-    Request entry();
-
-    /**
-     * Get Users.
-     * @return Users.
-     * @see Users
-     */
-    Users users();
-
-    /**
-     * Get all projects.
-     * @return Projects
-     * @see Projects
-     */
-    Projects projects();
+    Subset fields(Fields fields);
 }
