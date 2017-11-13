@@ -24,19 +24,36 @@
 
 package com.github.smallcreep.jb.hub.api.fields;
 
+import com.github.smallcreep.jb.hub.api.Field;
+
 /**
- * Fields wildcard for nested object.
+ * Field wildcard for nested object.
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
  *
- * @todo #6:15m/DEV Implements class for any nested field.
- *  Use wildcards in field selections, if needed.
- *  For example a/* to select all fields object a.
- *  For example items/pagemap/*\/title For each element in the items array,
- *  returns only the title field (if present) of all objects that are
- *  children of pagemap.
  */
-final class AnyNestedFields {
+public final class AnyNestedField implements Field {
+
+    /**
+     * Parent field.
+     */
+    private final Field parent;
+
+    /**
+     * Ctor.
+     * @param parent Parent field
+     */
+    public AnyNestedField(final Field parent) {
+        this.parent = parent;
+    }
+
+    @Override
+    public String value() throws Exception {
+        return new NestedField(
+            this.parent,
+            new Field.Simple("*")
+        ).value();
+    }
 }
