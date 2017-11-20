@@ -35,12 +35,9 @@ package com.github.smallcreep.jb.hub.api;
  * @todo #9:20m/DEV Create class RtProjects which will be simple
  *  implementation for Project interface.
  *  You can see request by url https://www.jetbrains.com/help/hub/HUB-REST-API_Projects.html.
- *
- * @todo #9:20m/TEST Create some integration testcase
- *  for check all features Projects implementation.
- *  Need check sort syntax, fields syntax, partial request.
  */
-public interface Projects extends Iterable<Project>, Sortable, Subset, Partial {
+public interface Projects extends Iterable<Project>,
+    Sortable<Projects>, Subset<Projects>, Partial<Projects> {
 
     /**
      * Get project by id.

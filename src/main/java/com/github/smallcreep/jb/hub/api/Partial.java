@@ -31,14 +31,15 @@ package com.github.smallcreep.jb.hub.api;
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
+ * @param <T> Type of self partial request
  * @since 0.2.0
  */
-public interface Partial {
+public interface Partial<T extends Partial> {
 
     /**
      * Set max number of elements to return in the page.
      * @param max Max number of elements
      * @return Self
      */
-    Partial max(int max);
+    T max(int max);
 }

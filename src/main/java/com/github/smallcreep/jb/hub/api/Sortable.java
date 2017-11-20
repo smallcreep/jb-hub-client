@@ -29,16 +29,17 @@ package com.github.smallcreep.jb.hub.api;
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
+ * @param <T> Type of self sortable request
  * @see <a href="https://www.jetbrains.com/help/hub/Sort-Syntax.html">Sort Syntax</a>
  * @since 0.2.0
  */
-public interface Sortable {
+public interface Sortable<T extends Sortable> {
 
     /**
      * Set sort.
      * @param sort Sort
      * @return Self
      */
-    Sortable sort(Sort sort);
+    T sort(Sort sort);
 
 }
