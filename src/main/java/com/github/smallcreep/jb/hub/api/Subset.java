@@ -39,6 +39,7 @@ public interface Subset<T extends Subset> {
      * Set fields for partial request.
      * @param fields Fields
      * @return Self
+     * @throws Exception If fails
      */
-    T fields(Fields fields);
+    T fields(Fields fields) throws Exception;
 }

@@ -116,6 +116,6 @@ public final class RtHub implements Hub {
 
     @Override
     public Projects projects() {
-        return null;
+        return new RtProjects(this.req);
     }
 }
