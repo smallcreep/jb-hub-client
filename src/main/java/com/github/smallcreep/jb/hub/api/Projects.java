@@ -31,10 +31,6 @@ package com.github.smallcreep.jb.hub.api;
  * @version $Id$
  * @see <a href="https://www.jetbrains.com/help/hub/HUB-REST-API_Projects.html">Projects JetBrains Hub</a>
  * @since 0.2.0
- *
- * @todo #9:20m/DEV Create class RtProjects which will be simple
- *  implementation for Project interface.
- *  You can see request by url https://www.jetbrains.com/help/hub/HUB-REST-API_Projects.html.
  */
 public interface Projects extends Iterable<Project>,
     Sortable<Projects>, Subset<Projects>, Partial<Projects> {
