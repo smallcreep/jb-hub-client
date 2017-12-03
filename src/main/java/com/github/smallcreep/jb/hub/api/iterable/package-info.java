@@ -23,10 +23,10 @@
  */
 
 /**
- * TestCase for {@link com.github.smallcreep.json}.
+ * Iterable and Iterator for jetbrains hub.
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
  */
-package com.github.smallcreep.json;
+package com.github.smallcreep.jb.hub.api.iterable;

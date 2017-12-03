@@ -23,10 +23,10 @@
  */
 
 /**
- * TestCase for {@link com.github.smallcreep.json}.
+ * TestCase for {@link com.github.smallcreep.misc}.
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
- * @since 0.2.0
+ * @since 0.1
  */
-package com.github.smallcreep.json;
+package com.github.smallcreep.misc;

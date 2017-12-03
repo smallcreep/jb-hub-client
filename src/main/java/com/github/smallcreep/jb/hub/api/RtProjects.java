@@ -1,7 +1,10 @@
 package com.github.smallcreep.jb.hub.api;
 
+import com.github.smallcreep.jb.hub.api.iterable.JsonArrayIterable;
 import com.jcabi.http.Request;
 import java.util.Iterator;
+import javax.json.JsonObject;
+import org.cactoos.iterable.Mapped;
 
 /**
  * Projects JetBrains Hub.
@@ -82,8 +85,16 @@ final class RtProjects implements Projects {
         );
     }
 
+    /**
+     * Returns an iterator over elements of type {@code T}.
+     *
+     * @return An Iterator.
+     */
     @Override
     public Iterator<Project> iterator() {
-        return null;
+        return new Mapped<JsonObject, Project>(
+            JsonProject::new,
+            new JsonArrayIterable(this.req, "projects")
+        ).iterator();
     }
 }

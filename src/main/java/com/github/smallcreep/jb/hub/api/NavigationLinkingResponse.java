@@ -1,6 +1,6 @@
 package com.github.smallcreep.jb.hub.api;
 
-import com.github.smallcreep.Optional;
+import com.github.smallcreep.misc.Optional;
 import com.jcabi.http.Request;
 import com.jcabi.http.Response;
 import com.jcabi.http.response.JsonResponse;
@@ -62,10 +62,15 @@ public final class NavigationLinkingResponse implements Response {
             .json()
             .readObject()
             .getString(pointer, "");
+        final Optional<Request> request;
         if (link.isEmpty()) {
-            return new Optional.Empty<>();
+            request = new Optional.Empty<>();
+        } else {
+            request = new Optional.Single<>(
+                new RestResponse(this).jump(URI.create(link))
+            );
         }
-        return new Optional.Single<>(new RestResponse(this).jump(URI.create(link)));
+        return request;
     }
 
     @Override

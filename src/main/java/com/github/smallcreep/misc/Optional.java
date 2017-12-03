@@ -1,4 +1,4 @@
-package com.github.smallcreep;
+package com.github.smallcreep.misc;
 
 import org.cactoos.Scalar;
 
@@ -33,7 +33,7 @@ public interface Optional<T> extends Scalar<T> {
          * Ctor.
          * @param obj Origin object
          */
-        public Single(T obj) {
+        public Single(final T obj) {
             this.object = obj;
         }
 
