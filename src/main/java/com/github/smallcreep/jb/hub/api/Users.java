@@ -42,8 +42,21 @@ public interface Users {
 
     /**
      * Get logged-in user.
-     * @return User
+     * @return Logged-in user
      */
     User self();
+
+    /**
+     * Get guest user.
+     * @return Guest user
+     */
+    User guest();
+
+    /**
+     * Get user by id.
+     * @param id User id
+     * @return User
+     */
+    User user(String id);
 
 }

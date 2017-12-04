@@ -77,6 +77,16 @@ final class RtUsers implements Users {
 
     @Override
     public User self() {
-        return new RtUser(this.request, this, "me");
+        return this.user("me");
+    }
+
+    @Override
+    public User guest() {
+        return this.user("guest");
+    }
+
+    @Override
+    public User user(final String id) {
+        return new RtUser(this.request, this, id);
     }
 }

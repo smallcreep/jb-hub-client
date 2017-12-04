@@ -93,4 +93,29 @@ public final class RtUsersTest {
             )
         );
     }
+
+    /**
+     * Guest get return correct user.
+     * @throws Exception If fails
+     */
+    @Test
+    public void guestGet() throws Exception {
+        final Request req = new JdkRequest("");
+        final RtUsers users = new RtUsers(
+            req,
+            new RtHub(
+                req
+            )
+        );
+        MatcherAssert.assertThat(
+            users.guest(),
+            CoreMatchers.equalTo(
+                new RtUser(
+                    req.uri().path("/users").back(),
+                    users,
+                    "guest"
+                )
+            )
+        );
+    }
 }
