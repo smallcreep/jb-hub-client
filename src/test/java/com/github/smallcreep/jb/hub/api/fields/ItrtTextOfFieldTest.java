@@ -48,6 +48,7 @@ public final class ItrtTextOfFieldTest {
      * @throws Exception If fails
      */
     @Test
+    @SuppressWarnings("unchecked")
     public void checkValues() throws Exception {
         final String first = "first";
         final String second = "second";
