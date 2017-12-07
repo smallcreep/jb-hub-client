@@ -10,7 +10,7 @@ import javax.json.JsonObject;
  * @version $Id$
  * @since 0.2.0
  */
-final class JsonProject implements Project {
+public final class JsProject implements Project {
 
     /**
      * Encapsulated json.
@@ -21,7 +21,7 @@ final class JsonProject implements Project {
      * Ctor.
      * @param json Project json
      */
-    JsonProject(final JsonObject json) {
+    JsProject(final JsonObject json) {
         this.json = json;
     }
 

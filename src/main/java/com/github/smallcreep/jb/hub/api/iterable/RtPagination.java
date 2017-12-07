@@ -5,13 +5,13 @@ import java.util.Iterator;
 import javax.json.JsonObject;
 
 /**
- * Iterable from Responses with Json Array, and next links.
+ * Pagination for response.
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
  */
-public final class JsonArrayIterable implements Iterable<JsonObject> {
+public final class RtPagination implements Iterable<JsonObject> {
 
     /**
      * Request.
@@ -28,13 +28,13 @@ public final class JsonArrayIterable implements Iterable<JsonObject> {
      * @param req Request
      * @param name Name objects array
      */
-    public JsonArrayIterable(final Request req, final String name) {
+    public RtPagination(final Request req, final String name) {
         this.req = req;
         this.name = name;
     }
 
     @Override
     public Iterator<JsonObject> iterator() {
-        return new JsonArrayIterator(this.req, this.name);
+        return new RtPaginationIterator(this.req, this.name);
     }
 }

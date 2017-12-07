@@ -1,6 +1,6 @@
 package com.github.smallcreep.jb.hub.api;
 
-import com.github.smallcreep.jb.hub.api.iterable.JsonArrayIterable;
+import com.github.smallcreep.jb.hub.api.iterable.RtPagination;
 import com.jcabi.http.Request;
 import java.util.Iterator;
 import javax.json.JsonObject;
@@ -85,16 +85,11 @@ final class RtProjects implements Projects {
         );
     }
 
-    /**
-     * Returns an iterator over elements of type {@code T}.
-     *
-     * @return An Iterator.
-     */
     @Override
     public Iterator<Project> iterator() {
         return new Mapped<JsonObject, Project>(
-            JsonProject::new,
-            new JsonArrayIterable(this.req, "projects")
+            JsProject::new,
+            new RtPagination(this.req, "projects")
         ).iterator();
     }
 }

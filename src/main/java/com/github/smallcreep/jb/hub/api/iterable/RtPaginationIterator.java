@@ -1,6 +1,6 @@
 package com.github.smallcreep.jb.hub.api.iterable;
 
-import com.github.smallcreep.jb.hub.api.NavigationLinkingResponse;
+import com.github.smallcreep.jb.hub.api.PaginationResponse;
 import com.github.smallcreep.misc.Optional;
 import com.jcabi.http.Request;
 import com.jcabi.http.Response;
@@ -21,7 +21,7 @@ import javax.json.JsonObject;
  * @version $Id$
  * @since 0.2.0
  */
-final class JsonArrayIterator implements Iterator<JsonObject> {
+final class RtPaginationIterator implements Iterator<JsonObject> {
 
     /**
      * Array response.
@@ -61,7 +61,7 @@ final class JsonArrayIterator implements Iterator<JsonObject> {
      * @param req Request
      * @param name Name objects array
      */
-    JsonArrayIterator(final Request req, final String name) {
+    RtPaginationIterator(final Request req, final String name) {
         this.req = req;
         this.name = name;
     }
@@ -116,7 +116,7 @@ final class JsonArrayIterator implements Iterator<JsonObject> {
         if (this.response.get() != null) {
             final Optional<Request> next = this.response
                 .get()
-                .as(NavigationLinkingResponse.class)
+                .as(PaginationResponse.class)
                 .next();
             if (next.has()) {
                 this.response.set(

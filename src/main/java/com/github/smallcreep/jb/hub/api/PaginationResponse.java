@@ -11,13 +11,13 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Jetbrains Hub navigation linking response.
+ * Jetbrains Hub response with pagination link.
  *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
  */
-public final class NavigationLinkingResponse implements Response {
+public final class PaginationResponse implements Response {
 
     /**
      * Encapsulated response.
@@ -28,7 +28,7 @@ public final class NavigationLinkingResponse implements Response {
      * Public ctor.
      * @param resp Response
      */
-    public NavigationLinkingResponse(final Response resp) {
+    public PaginationResponse(final Response resp) {
         this.response = resp;
     }
 

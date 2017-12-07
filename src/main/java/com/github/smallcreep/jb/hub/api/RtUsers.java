@@ -24,10 +24,14 @@
 
 package com.github.smallcreep.jb.hub.api;
 
+import com.github.smallcreep.jb.hub.api.iterable.RtPagination;
 import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
 import com.jcabi.http.Request;
+import java.util.Iterator;
+import javax.json.JsonObject;
 import lombok.EqualsAndHashCode;
+import org.cactoos.iterable.Mapped;
 
 /**
  * JetBrains Hub User API.
@@ -88,5 +92,13 @@ final class RtUsers implements Users {
     @Override
     public User user(final String id) {
         return new RtUser(this.request, this, id);
+    }
+
+    @Override
+    public Iterator<User> iterator() {
+        return new Mapped<JsonObject, User>(
+            jsn -> new JsUser(this, jsn),
+            new RtPagination(this.request, "users")
+        ).iterator();
     }
 }

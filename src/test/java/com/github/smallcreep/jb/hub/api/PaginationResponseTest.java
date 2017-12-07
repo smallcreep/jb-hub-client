@@ -7,12 +7,12 @@ import org.hamcrest.Matchers;
 import org.junit.Test;
 
 /**
- * Test Case for {@link NavigationLinkingResponse}.
+ * Test Case for {@link PaginationResponse}.
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
  */
-public final class NavigationLinkingResponseTest {
+public final class PaginationResponseTest {
 
     /**
      * Follow to next link if this link presented in response.
@@ -20,8 +20,8 @@ public final class NavigationLinkingResponseTest {
      */
     @Test
     public void followToNextLink() throws Exception {
-        final NavigationLinkingResponse response =
-            new NavigationLinkingResponse(
+        final PaginationResponse response =
+            new PaginationResponse(
                 new FakeRequest().withBody(
                     "{ \"next\": \"https://localhost/test/next\" }"
                 ).uri().set(new URI("http://localhost/test")).back().fetch()
@@ -38,8 +38,8 @@ public final class NavigationLinkingResponseTest {
      */
     @Test
     public void emptyNextLink() throws Exception {
-        final NavigationLinkingResponse response =
-            new NavigationLinkingResponse(
+        final PaginationResponse response =
+            new PaginationResponse(
                 new FakeRequest().withBody(
                     "{}"
                 ).uri().set(new URI("http://localhost/test")).back().fetch()
@@ -56,8 +56,8 @@ public final class NavigationLinkingResponseTest {
      */
     @Test
     public void followToPreviousLink() throws Exception {
-        final NavigationLinkingResponse response =
-            new NavigationLinkingResponse(
+        final PaginationResponse response =
+            new PaginationResponse(
                 new FakeRequest().withBody(
                     "{ \"prev\": \"https://localhost/test/previous\" }"
                 ).uri().set(new URI("http://localhost/test")).back().fetch()
@@ -74,8 +74,8 @@ public final class NavigationLinkingResponseTest {
      */
     @Test
     public void emptyPreviousLink() throws Exception {
-        final NavigationLinkingResponse response =
-            new NavigationLinkingResponse(
+        final PaginationResponse response =
+            new PaginationResponse(
                 new FakeRequest().withBody(
                     "{}"
                 ).uri().set(new URI("http://localhost/test")).back().fetch()
