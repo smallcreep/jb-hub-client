@@ -32,7 +32,8 @@ package com.github.smallcreep.jb.hub.api;
  * @see <a href="https://www.jetbrains.com/help/hub/HUB-REST-API_Users.html">Users API</a>
  * @since 0.1
  */
-public interface Users extends Iterable<User> {
+public interface Users extends Iterable<User>,
+    Sortable<Users>, Subset<Users>, Partial<Users> {
 
     /**
      * Get its owner.

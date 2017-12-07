@@ -43,13 +43,18 @@ import org.cactoos.iterable.Mapped;
  */
 @Immutable
 @Loggable(Loggable.DEBUG)
-@EqualsAndHashCode(of = {"request", "hub"})
+@EqualsAndHashCode(of = {"req", "hub", "origin"})
 final class RtUsers implements Users {
+
+    /**
+     * Entry request.
+     */
+    private final Request origin;
 
     /**
      * RESTful request.
      */
-    private final Request request;
+    private final Request req;
 
     /**
      * Hub owner.
@@ -66,11 +71,24 @@ final class RtUsers implements Users {
 
     /**
      * Ctor.
-     * @param request Entry request
+     *
+     * @param request Entry req
      * @param hub Hub
      */
     RtUsers(final Request request, final Hub hub) {
-        this.request = request.uri().path("/users").back();
+        this(request, request.uri().path("/users").back(), hub);
+    }
+
+    /**
+     * Ctor.
+     *
+     * @param origin Entry request
+     * @param req RESTful request
+     * @param hub Hub
+     */
+    private RtUsers(final Request origin, final Request req, final Hub hub) {
+        this.origin = origin;
+        this.req = req;
         this.hub = hub;
     }
 
@@ -91,14 +109,50 @@ final class RtUsers implements Users {
 
     @Override
     public User user(final String id) {
-        return new RtUser(this.request, this, id);
+        return new RtUser(this.req, this, id);
     }
 
     @Override
     public Iterator<User> iterator() {
         return new Mapped<JsonObject, User>(
             jsn -> new JsUser(this, jsn),
-            new RtPagination(this.request, "users")
+            new RtPagination(this.req, "users")
         ).iterator();
+    }
+
+    @Override
+    public Users max(final int max) {
+        return new RtUsers(
+            this.origin,
+            this.req
+                .uri()
+                .queryParam("top", max)
+                .back(),
+            this.hub
+        );
+    }
+
+    @Override
+    public Users sort(final Sort sort) throws Exception {
+        return new RtUsers(
+            this.origin,
+            this.req
+                .uri()
+                .queryParam("orderBy", sort.value())
+                .back(),
+            this.hub
+        );
+    }
+
+    @Override
+    public Users fields(final Fields fields) throws Exception {
+        return new RtUsers(
+            this.origin,
+            this.req
+                .uri()
+                .queryParam("fields", fields.value())
+                .back(),
+            this.hub
+        );
     }
 }
