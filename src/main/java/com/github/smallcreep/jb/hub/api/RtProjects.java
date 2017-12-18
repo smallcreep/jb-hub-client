@@ -92,4 +92,15 @@ final class RtProjects implements Projects {
             new RtPagination(this.req, "projects")
         ).iterator();
     }
+
+    @Override
+    public Projects search(final Query query) throws Exception {
+        return new RtProjects(
+            this.origin,
+            this.req
+                .uri()
+                .queryParam("query", query.value())
+                .back()
+        );
+    }
 }

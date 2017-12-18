@@ -4,6 +4,7 @@ import com.github.smallcreep.jb.hub.api.fields.MultipleFields;
 import com.github.smallcreep.jb.hub.api.fields.NestedField;
 import com.github.smallcreep.jb.hub.api.fields.SubFields;
 import com.github.smallcreep.jb.hub.api.integration.DefaultAuthByPass;
+import com.github.smallcreep.jb.hub.api.query.Or;
 import com.github.smallcreep.jb.hub.api.sort.AscSort;
 import com.github.smallcreep.json.ObjectHasJson;
 import javax.json.Json;
@@ -36,6 +37,22 @@ public final class ProjectsITCase {
             .sort(
                 new AscSort(
                     "key"
+                )
+            )
+            .search(
+                new Or(
+                    new com.github.smallcreep.jb.hub.api.query.Field(
+                        "key",
+                        "AP"
+                    ),
+                    new com.github.smallcreep.jb.hub.api.query.Field(
+                        "key",
+                        "GLBL"
+                    ),
+                    new com.github.smallcreep.jb.hub.api.query.Field(
+                        "id",
+                        "a5d71886-3b1e-40eb-a266-2f53e331a576"
+                    )
                 )
             )
             .fields(
@@ -213,59 +230,13 @@ public final class ProjectsITCase {
                 )
                 .build()
         );
-        final ObjectHasJson fourth = new ObjectHasJson(
-            Json.createObjectBuilder()
-                .add(
-                    "id",
-                    "77a3ea4f-9748-4e97-a7e7-d8bc8a8b88ed"
-                )
-                .add(
-                    "key",
-                    "TYA"
-                )
-                .add(
-                    "resources",
-                    Json.createArrayBuilder()
-                        .add(
-                            Json.createObjectBuilder()
-                                .add(
-                                    "id",
-                                    "4774a74d-9515-4f5c-af99-37e4da426208"
-                                )
-                                .add(
-                                    "key",
-                                    "TYA"
-                                )
-                        )
-                        .add(
-                            Json.createObjectBuilder()
-                                .add(
-                                    "id",
-                                    "d8a6bec7-8fd1-4916-8475-a946c07ac8e2"
-                                )
-                                .add(
-                                    "key",
-                                    "adminTestYoutrackApi"
-                                )
-                        )
-                )
-                .add(
-                    "team",
-                    Json.createObjectBuilder().add(
-                        "type",
-                        "projectTeam"
-                    )
-                )
-                .build()
-        );
         MatcherAssert.assertThat(
             "Integration request for get projects doesn't correct!",
             projects,
             Matchers.contains(
                 first,
                 second,
-                third,
-                fourth
+                third
             )
         );
     }

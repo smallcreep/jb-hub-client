@@ -22,24 +22,12 @@
  * SOFTWARE.
  */
 
-package com.github.smallcreep.jb.hub.api;
-
 /**
- * Projects JetBrains Hub.
+ * Different query syntax from JetBrains Hub.
  *
+ * <p><a href="https://www.jetbrains.com/help/hub/Query-Syntax.html">Query Syntax</a></p>
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
- * @see <a href="https://www.jetbrains.com/help/hub/HUB-REST-API_Projects.html">Projects JetBrains Hub</a>
  * @since 0.2.0
  */
-public interface Projects extends Iterable<Project>,
-    Sortable<Projects>, Subset<Projects>, Partial<Projects>,
-    Searchable<Projects> {
-
-    /**
-     * Get project by id.
-     * @param id Project id
-     * @return Project
-     */
-    Project project(String id);
-}
+package com.github.smallcreep.jb.hub.api.query;
