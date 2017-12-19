@@ -33,7 +33,8 @@ package com.github.smallcreep.jb.hub.api;
  * @since 0.1
  */
 public interface Users extends Iterable<User>,
-    Sortable<Users>, Subset<Users>, Partial<Users> {
+    Sortable<Users>, Subset<Users>, Partial<Users>,
+    Searchable<Users> {
 
     /**
      * Get its owner.

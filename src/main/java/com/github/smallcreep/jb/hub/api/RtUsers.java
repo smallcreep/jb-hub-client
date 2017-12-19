@@ -155,4 +155,16 @@ final class RtUsers implements Users {
             this.hub
         );
     }
+
+    @Override
+    public Users search(final Query query) throws Exception {
+        return new RtUsers(
+            this.origin,
+            this.req
+                .uri()
+                .queryParam("query", query.value())
+                .back(),
+            this.hub
+        );
+    }
 }
