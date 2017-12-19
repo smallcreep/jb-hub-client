@@ -118,4 +118,12 @@ public final class RtHub implements Hub {
     public Projects projects() {
         return new RtProjects(this.req);
     }
+
+    @Override
+    public Permissions permissions() {
+        // @todo #45:30m/DEV Implement Permissions class.
+        // Add class RtPermissions with all methods
+        // and JsPermission with all methods.
+        return null;
+    }
 }

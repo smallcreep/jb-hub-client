@@ -56,4 +56,11 @@ public interface Hub {
      * @see Projects
      */
     Projects projects();
+
+    /**
+     * Get all permissions.
+     * @return Permissions
+     * @see Permissions
+     */
+    Permissions permissions();
 }
