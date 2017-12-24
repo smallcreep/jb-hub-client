@@ -121,12 +121,6 @@ public final class RtHub implements Hub {
 
     @Override
     public Permissions permissions() {
-        // @checkstyle RegexpMultilineCheck (2 lines)
-        /**
-         * @todo #45:30m/DEV Implement Permissions class.
-         *  Add class RtPermissions with all methods
-         *  and JsPermission with all methods.
-         */
-        return null;
+        return new RtPermissions(this.req);
     }
 }

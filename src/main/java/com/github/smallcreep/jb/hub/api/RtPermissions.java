@@ -11,12 +11,14 @@ import javax.json.JsonObject;
 import org.cactoos.iterable.Mapped;
 
 /**
- * Projects JetBrains Hub.
+ * JetBrains Hub Permissions.
+ *
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
+ * @see <a href="https://www.jetbrains.com/help/hub/HUB-REST-API_Permissions_Get-All-Permissions.html">JetBrains Hub Permissions</a>
  * @since 0.2.0
  */
-final class RtProjects implements Projects {
+final class RtPermissions implements Permissions {
 
     /**
      * Origin request.
@@ -32,11 +34,11 @@ final class RtProjects implements Projects {
      * Ctor.
      * @param req Origin request
      */
-    RtProjects(final Request req) {
+    RtPermissions(final Request req) {
         this(
             req,
             req.uri()
-                .path("/projects")
+                .path("/permissions")
                 .back()
         );
     }
@@ -46,19 +48,14 @@ final class RtProjects implements Projects {
      * @param origin Origin request
      * @param req Projects request
      */
-    private RtProjects(final Request origin, final Request req) {
+    private RtPermissions(final Request origin, final Request req) {
         this.origin = origin;
         this.req = req;
     }
 
     @Override
-    public Project project(final String id) {
-        return null;
-    }
-
-    @Override
-    public Projects max(final int max) {
-        return new RtProjects(
+    public Permissions max(final int max) {
+        return new RtPermissions(
             this.origin,
             new SkippedRequest(
                 this.req,
@@ -68,8 +65,19 @@ final class RtProjects implements Projects {
     }
 
     @Override
-    public Projects sort(final Sort sort) {
-        return new RtProjects(
+    public Permissions search(final Query query) {
+        return new RtPermissions(
+            this.origin,
+            new QueryableRequest(
+                this.req,
+                query
+            )
+        );
+    }
+
+    @Override
+    public Permissions sort(final Sort sort) {
+        return new RtPermissions(
             this.origin,
             new OrderedRequest(
                 this.req,
@@ -79,8 +87,8 @@ final class RtProjects implements Projects {
     }
 
     @Override
-    public Projects fields(final Fields fields) {
-        return new RtProjects(
+    public Permissions fields(final Fields fields) {
+        return new RtPermissions(
             this.origin,
             new SubsetRequest(
                 this.req,
@@ -90,21 +98,10 @@ final class RtProjects implements Projects {
     }
 
     @Override
-    public Iterator<Project> iterator() {
-        return new Mapped<JsonObject, Project>(
-            JsProject::new,
-            new RtPagination(this.req, "projects")
+    public Iterator<Permission> iterator() {
+        return new Mapped<JsonObject, Permission>(
+            JsPermission::new,
+            new RtPagination(this.req, "permissions")
         ).iterator();
-    }
-
-    @Override
-    public Projects search(final Query query) {
-        return new RtProjects(
-            this.origin,
-            new QueryableRequest(
-                this.req,
-                query
-            )
-        );
     }
 }

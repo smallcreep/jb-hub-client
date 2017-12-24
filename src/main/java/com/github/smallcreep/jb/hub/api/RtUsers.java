@@ -25,6 +25,10 @@
 package com.github.smallcreep.jb.hub.api;
 
 import com.github.smallcreep.jb.hub.api.iterable.RtPagination;
+import com.github.smallcreep.jb.hub.api.req.OrderedRequest;
+import com.github.smallcreep.jb.hub.api.req.QueryableRequest;
+import com.github.smallcreep.jb.hub.api.req.SkippedRequest;
+import com.github.smallcreep.jb.hub.api.req.SubsetRequest;
 import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
 import com.jcabi.http.Request;
@@ -40,6 +44,7 @@ import org.cactoos.iterable.Mapped;
  * @version $Id$
  * @see <a href="https://www.jetbrains.com/help/hub/HUB-REST-API_Users_Get-User.html">User API</a>
  * @since 0.1
+ * @checkstyle ClassDataAbstractionCouplingCheck (5 lines)
  */
 @Immutable
 @Loggable(Loggable.DEBUG)
@@ -124,46 +129,46 @@ final class RtUsers implements Users {
     public Users max(final int max) {
         return new RtUsers(
             this.origin,
-            this.req
-                .uri()
-                .queryParam("top", max)
-                .back(),
+            new SkippedRequest(
+                this.req,
+                max
+            ),
             this.hub
         );
     }
 
     @Override
-    public Users sort(final Sort sort) throws Exception {
+    public Users sort(final Sort sort) {
         return new RtUsers(
             this.origin,
-            this.req
-                .uri()
-                .queryParam("orderBy", sort.value())
-                .back(),
+            new OrderedRequest(
+                this.req,
+                sort
+            ),
             this.hub
         );
     }
 
     @Override
-    public Users fields(final Fields fields) throws Exception {
+    public Users fields(final Fields fields) {
         return new RtUsers(
             this.origin,
-            this.req
-                .uri()
-                .queryParam("fields", fields.value())
-                .back(),
+            new SubsetRequest(
+                this.req,
+                fields
+            ),
             this.hub
         );
     }
 
     @Override
-    public Users search(final Query query) throws Exception {
+    public Users search(final Query query) {
         return new RtUsers(
             this.origin,
-            this.req
-                .uri()
-                .queryParam("query", query.value())
-                .back(),
+            new QueryableRequest(
+                this.req,
+                query
+            ),
             this.hub
         );
     }

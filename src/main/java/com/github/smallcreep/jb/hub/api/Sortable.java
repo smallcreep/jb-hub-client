@@ -39,8 +39,7 @@ public interface Sortable<T extends Sortable> {
      * Set sort.
      * @param sort Sort
      * @return Self
-     * @throws Exception If fails
      */
-    T sort(Sort sort) throws Exception;
+    T sort(Sort sort);
 
 }

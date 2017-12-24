@@ -15,7 +15,6 @@ public interface Searchable<T extends Searchable> {
      * Search.
      * @param query Query
      * @return Self
-     * @throws Exception If fails
      */
-    T search(Query query) throws Exception;
+    T search(Query query);
 }

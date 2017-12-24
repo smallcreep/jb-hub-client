@@ -22,23 +22,10 @@
  * SOFTWARE.
  */
 
-package com.github.smallcreep.jb.hub.api;
-
 /**
- * Subset request.
- *
+ * Request decorator.
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
- * @param <T> Type of self subset request
- * @see <a href="https://www.jetbrains.com/help/hub/Fields-Syntax.html">Fields Syntax</a>
  * @since 0.2.0
  */
-public interface Subset<T extends Subset> {
-
-    /**
-     * Set fields for partial request.
-     * @param fields Fields
-     * @return Self
-     */
-    T fields(Fields fields);
-}
+package com.github.smallcreep.jb.hub.api.req;
