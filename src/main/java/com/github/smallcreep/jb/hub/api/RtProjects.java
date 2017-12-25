@@ -15,6 +15,7 @@ import org.cactoos.iterable.Mapped;
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.2.0
+ * @checkstyle ClassDataAbstractionCouplingCheck (3 lines)
  */
 final class RtProjects implements Projects {
 
@@ -53,7 +54,7 @@ final class RtProjects implements Projects {
 
     @Override
     public Project project(final String id) {
-        return null;
+        return new RtProject(this.req, id);
     }
 
     @Override
