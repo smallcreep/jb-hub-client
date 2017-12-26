@@ -42,4 +42,10 @@ public interface Projects extends Iterable<Project>,
      * @return Project
      */
     Project project(String id);
+
+    /**
+     * Get global project.
+     * @return Project
+     */
+    Project global();
 }

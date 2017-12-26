@@ -108,4 +108,9 @@ final class RtProjects implements Projects {
             )
         );
     }
+
+    @Override
+    public Project global() {
+        return this.project("global");
+    }
 }
