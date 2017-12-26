@@ -34,7 +34,7 @@ import com.github.smallcreep.json.JsonReadable;
  * @see <a href="https://www.jetbrains.com/help/hub/HUB-REST-API_Projects_Get-Project.html">Project JetBrains Hub</a>
  * @since 0.2.0
  *
- * @todo #82:DEV/15min Project extended Subset of Project.
+ * @todo #82:15m/DEV Project extended Subset of Project.
  *  Add implementation for all Class.
  */
 public interface Project extends JsonReadable {
