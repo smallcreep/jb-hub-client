@@ -6,3 +6,4 @@ classes/
 build/
 out/
 gradle.properties
+secret.gpg
