@@ -25,7 +25,6 @@ public final class ProjectsITCase {
      * Integration test case for projects,
      * check Sort, Partial request, Fields Syntax.
      * @throws Exception If fails
-     * @checkstyle MethodLengthCheck (3 lines)
      */
     @Test
     @SuppressWarnings("unchecked")
@@ -43,15 +42,11 @@ public final class ProjectsITCase {
                 new Or(
                     new com.github.smallcreep.jb.hub.api.query.Field(
                         "key",
-                        "AP"
-                    ),
-                    new com.github.smallcreep.jb.hub.api.query.Field(
-                        "key",
                         "GLBL"
                     ),
                     new com.github.smallcreep.jb.hub.api.query.Field(
                         "id",
-                        "a5d71886-3b1e-40eb-a266-2f53e331a576"
+                        "b41c4407-3349-4e57-9c69-1ddcf622545b"
                     )
                 )
             )
@@ -84,41 +79,26 @@ public final class ProjectsITCase {
                     )
                 )
             );
-        final ObjectHasJson first = new ObjectHasJson(
+        final ObjectHasJson second = new ObjectHasJson(
             Json.createObjectBuilder()
                 .add(
                     "id",
-                    "ed76cfc7-9ac2-41a5-9c85-13df3051db08"
+                    "b41c4407-3349-4e57-9c69-1ddcf622545b"
                 )
                 .add(
                     "key",
-                    "AP"
-                )
-                .add(
-                    "resources",
-                    Json.createArrayBuilder()
-                        .add(
-                            Json.createObjectBuilder()
-                                .add(
-                                    "id",
-                                    "87141cd1-ee49-47d8-85d2-50c6f8e3b32d"
-                                ).add(
-                                "key",
-                                "AP"
-                            )
-                        )
+                    "TEST"
                 )
                 .add(
                     "team",
-                    Json.createObjectBuilder()
-                        .add(
-                            "type",
-                            "projectTeam"
-                        )
+                    Json.createObjectBuilder().add(
+                        "type",
+                        "projectTeam"
+                    )
                 )
                 .build()
         );
-        final ObjectHasJson second = new ObjectHasJson(
+        final ObjectHasJson first = new ObjectHasJson(
             Json.createObjectBuilder()
                 .add(
                     "id",
@@ -135,7 +115,7 @@ public final class ProjectsITCase {
                             Json.createObjectBuilder()
                                 .add(
                                     "id",
-                                    "c1c6bd95-ecd9-4efa-a58b-f85749ce400d"
+                                    "8b0503be-b322-49ee-99c3-a2461932e24d"
                                 )
                                 .add(
                                     "key",
@@ -146,78 +126,11 @@ public final class ProjectsITCase {
                             Json.createObjectBuilder()
                                 .add(
                                     "id",
-                                    "f95dc4bf-d370-43b6-90d2-02726a7a9c4d"
+                                    "bbca3a28-3061-4190-ba9e-eb93a3727918"
                                 )
                                 .add(
                                     "key",
                                     "Registered Users"
-                                )
-                        )
-                        .add(
-                            Json.createObjectBuilder()
-                                .add(
-                                    "id",
-                                    "df267d39-ca72-436f-9eb5-cf5722a09009"
-                                )
-                                .add(
-                                    "key",
-                                    "Reporters"
-                                )
-                        )
-                        .add(
-                            Json.createObjectBuilder()
-                                .add(
-                                    "id",
-                                    "4ed5d23e-af4e-419f-abe6-ce02cfd06b24"
-                                )
-                                .add(
-                                    "key",
-                                    "workflow adsterra-team"
-                                )
-                        )
-                        .add(
-                            Json.createObjectBuilder()
-                                .add(
-                                    "id",
-                                    "2f12da75-a7d6-437f-ac8f-70f47f8fb0bf"
-                                )
-                                .add(
-                                    "key",
-                                    "workflow adsterra Team"
-                                )
-                        )
-                )
-                .add(
-                    "team",
-                    Json.createObjectBuilder().add(
-                        "type",
-                        "projectTeam"
-                    )
-                )
-                .build()
-        );
-        final ObjectHasJson third = new ObjectHasJson(
-            Json.createObjectBuilder()
-                .add(
-                    "id",
-                    "a5d71886-3b1e-40eb-a266-2f53e331a576"
-                )
-                .add(
-                    "key",
-                    "SP"
-                )
-                .add(
-                    "resources",
-                    Json.createArrayBuilder()
-                        .add(
-                            Json.createObjectBuilder()
-                                .add(
-                                    "id",
-                                    "4724cf34-7f48-422b-a0ee-586c372bd682"
-                                )
-                                .add(
-                                    "key",
-                                    "SP"
                                 )
                         )
                 )
@@ -235,8 +148,7 @@ public final class ProjectsITCase {
             projects,
             Matchers.contains(
                 first,
-                second,
-                third
+                second
             )
         );
     }

@@ -50,13 +50,24 @@ public final class DefaultAuthByPass implements Auth {
      * @throws URISyntaxException If fails
      */
     public DefaultAuthByPass() throws IOException, URISyntaxException {
+        this("http://127.0.0.1:8080");
+    }
+
+    /**
+     * Ctor.
+     * @param uri Hub Uri
+     * @throws IOException If fails
+     * @throws URISyntaxException If fails
+     */
+    public DefaultAuthByPass(final String uri)
+        throws IOException, URISyntaxException {
         this.origin = new AuthByPass(
-            new URI(System.getProperty("failsafe.hub.uri")),
+            new URI(uri),
             new DefaultOAuth2(),
-            System.getProperty("failsafe.hub.username"),
-            System.getProperty("failsafe.hub.password"),
+            "admin",
+            "123456",
             new IterableOf<>(
-                System.getProperty("failsafe.hub.scopes").split(",")
+                "0-0-0-0-0"
             )
         );
     }

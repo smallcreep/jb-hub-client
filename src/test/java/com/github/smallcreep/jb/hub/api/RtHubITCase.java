@@ -51,11 +51,11 @@ public final class RtHubITCase {
             .json();
         MatcherAssert.assertThat(
             json.getString("name"),
-            Matchers.equalTo("root")
+            Matchers.equalTo("admin")
         );
         MatcherAssert.assertThat(
             json.getString("login"),
-            Matchers.equalTo("root")
+            Matchers.equalTo("admin")
         );
     }
 }

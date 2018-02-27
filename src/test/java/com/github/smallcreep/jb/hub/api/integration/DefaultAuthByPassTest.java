@@ -73,11 +73,6 @@ public final class DefaultAuthByPassTest {
      */
     @Test
     public void returnHub() throws Exception {
-        System.setProperty("failsafe.hub.service", "client_id");
-        System.setProperty("failsafe.hub.secret", "client_secret");
-        System.setProperty("failsafe.hub.username", "user");
-        System.setProperty("failsafe.hub.password", "pass");
-        System.setProperty("failsafe.hub.scopes", "first,second");
         final MkContainer container = new MkGrizzlyContainer()
             .next(
                 new MkAnswer.Simple(
@@ -86,9 +81,8 @@ public final class DefaultAuthByPassTest {
                         + "\"access_token\": \"token123\"}"
                 )
             ).start();
-        System.setProperty("failsafe.hub.uri", container.home().toString());
         MatcherAssert.assertThat(
-            new DefaultAuthByPass().hub(),
+            new DefaultAuthByPass(container.home().toString()).hub(),
             Matchers.equalTo(
                 new RtHub(
                     container.home(),

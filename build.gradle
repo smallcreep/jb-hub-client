@@ -7,15 +7,43 @@ buildscript {
             url "https://plugins.gradle.org/m2/"
         }
         jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath "com.gradle:build-scan-plugin:1.8"
+        classpath 'com.bmuschko:gradle-docker-plugin:3.2.4'
     }
 }
 
 apply from: rootProject.file('gradle/basic.gradle')
-
 apply plugin: 'maven'
+
+// use fully qualified class name
+apply plugin: 'com.bmuschko.docker-java-application'
+
+import com.bmuschko.gradle.docker.tasks.container.*
+import com.bmuschko.gradle.docker.tasks.container.extras.DockerWaitHealthyContainer
+
+task createHubContainer(type: DockerCreateContainer) {
+    targetImageId { 'jetbrains/hub:2017.4.8440' }
+    portBindings = ['127.0.0.1:8080:8080']
+    def projectPath = project.getProjectDir().toString()
+    binds = new HashMap<String, String>()
+    binds.put(projectPath + '/hub/data', '/opt/hub/data')
+    binds.put(projectPath + '/hub/conf', '/opt/hub/conf')
+
+
+    containerName = 'jb-hub-for-client'
+}
+
+task startHub(type: DockerStartContainer) {
+    dependsOn createHubContainer
+    targetContainerId { createHubContainer.getContainerId() }
+}
+
+task waitHubStart(type: DockerWaitHealthyContainer) {
+
+}
 
 repositories {
     mavenCentral()
@@ -69,17 +97,6 @@ dependencies {
 
     testRuntimeClasspath "org.apache.logging.log4j:log4j-slf4j-impl:$log4jVersion"
     testRuntimeClasspath "org.apache.logging.log4j:log4j-core:$log4jVersion"
-}
-
-test {
-    systemProperties = [
-            "failsafe.hub.username": (project.hasProperty('hubUsername') ? getProperty('hubUsername') : System.getenv("username")),
-            "failsafe.hub.password": (project.hasProperty('hubPassword') ? getProperty('hubPassword') : System.getenv("password")),
-            "failsafe.hub.service" : (project.hasProperty('hubService') ? getProperty('hubService') : System.getenv("service")),
-            "failsafe.hub.secret"  : (project.hasProperty('hubSecret') ? getProperty('hubSecret') : System.getenv("secret")),
-            "failsafe.hub.uri"     : (project.hasProperty('hubUri') ? getProperty('hubUri') : System.getenv("uri")),
-            "failsafe.hub.scopes"  : (project.hasProperty('hubScopes') ? getProperty('hubScopes') : System.getenv("scopes"))
-    ]
 }
 
 uploadArchives {

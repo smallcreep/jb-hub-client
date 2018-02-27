@@ -51,8 +51,8 @@ public final class DefaultOAuth2 implements OAuth2Client {
      */
     public DefaultOAuth2() {
         this.origin = new OAuth2Client.Simple(
-            System.getProperty("failsafe.hub.service"),
-            System.getProperty("failsafe.hub.secret")
+            "f5e1921f-4380-4165-9144-59ca22b61ccb",
+            "ldmjrjjZQdBi"
         );
     }
 
