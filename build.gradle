@@ -45,6 +45,15 @@ task waitHubStart(type: DockerWaitHealthyContainer) {
 
 }
 
+task archiveHubData(type: Zip) {
+    from 'hub'
+    destinationDir = project.file('./data')
+    baseName 'jb-hub-data'
+    appendix 'int-test'
+    version ''
+    classifier ''
+}
+
 repositories {
     mavenCentral()
 }
