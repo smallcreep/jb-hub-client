@@ -54,6 +54,11 @@ task archiveHubData(type: Zip) {
     classifier ''
 }
 
+task unarchiveHubData(type: Copy) {
+    from zipTree('./data/jb-hub-data-int-test.zip')
+    into './hub'
+}
+
 repositories {
     mavenCentral()
 }
