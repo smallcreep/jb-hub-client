@@ -48,8 +48,8 @@ public final class DefaultOAuth2Test {
             new DefaultOAuth2().header(),
             CoreMatchers.equalTo(
                 "Basic "
-                    + "ZjVlMTkyMWYtNDM4MC00MTY1LTkxNDQtNTlj"
-                    + "YTIyYjYxY2NiOmxkbWpyampaUWRCaQ=="
+                    + "ZDM4MmRjZjYtMzViMS00ZWI1LThlN2QtMDcy"
+                    + "Mzg4MTg4MzFmOmxkbWpyampaUWRCaQ=="
             )
         );
     }

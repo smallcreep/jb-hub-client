@@ -51,7 +51,7 @@ public final class DefaultOAuth2 implements OAuth2Client {
      */
     public DefaultOAuth2() {
         this.origin = new OAuth2Client.Simple(
-            "f5e1921f-4380-4165-9144-59ca22b61ccb",
+            "d382dcf6-35b1-4eb5-8e7d-07238818831f",
             "ldmjrjjZQdBi"
         );
     }

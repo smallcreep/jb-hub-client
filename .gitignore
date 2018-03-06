@@ -7,3 +7,4 @@ build/
 out/
 gradle.properties
 secret.gpg
+/hub/

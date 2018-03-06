@@ -22,28 +22,8 @@ apply plugin: 'maven'
 apply plugin: 'com.bmuschko.docker-java-application'
 
 import com.bmuschko.gradle.docker.tasks.container.*
+import com.bmuschko.gradle.docker.tasks.image.*
 import com.bmuschko.gradle.docker.tasks.container.extras.DockerWaitHealthyContainer
-
-task createHubContainer(type: DockerCreateContainer) {
-    targetImageId { 'jetbrains/hub:2017.4.8440' }
-    portBindings = ['127.0.0.1:8080:8080']
-    def projectPath = project.getProjectDir().toString()
-    binds = new HashMap<String, String>()
-    binds.put(projectPath + '/hub/data', '/opt/hub/data')
-    binds.put(projectPath + '/hub/conf', '/opt/hub/conf')
-
-
-    containerName = 'jb-hub-for-client'
-}
-
-task startHub(type: DockerStartContainer) {
-    dependsOn createHubContainer
-    targetContainerId { createHubContainer.getContainerId() }
-}
-
-task waitHubStart(type: DockerWaitHealthyContainer) {
-
-}
 
 task archiveHubData(type: Zip) {
     from 'hub'
@@ -57,6 +37,97 @@ task archiveHubData(type: Zip) {
 task unarchiveHubData(type: Copy) {
     from zipTree('./data/jb-hub-data-int-test.zip')
     into './hub'
+}
+
+task changeOwnerDockerfile (type: Dockerfile) {
+    destFile = project.file('build/changeowner/Dockerfile')
+    from 'alpine:3.6'
+}
+
+task changeOwnerBuildImage(type: DockerBuildImage) {
+    dependsOn changeOwnerDockerfile
+    inputDir = changeOwnerDockerfile.destFile.parentFile
+    tag = 'changeowner:latest'
+}
+
+task createChangeOwnerContainer(type: DockerCreateContainer) {
+    dependsOn changeOwnerBuildImage
+    targetImageId { changeOwnerBuildImage.getImageId() }
+    def projectPath = project.getProjectDir().toString()
+    binds = new HashMap<String, String>()
+    binds.put(projectPath + '/hub', '/hub')
+    cmd = ['chown', '-R', '13001:13001', '/hub']
+    containerName = 'change-owner'
+}
+
+task startChangeOwnerHubData(type: DockerStartContainer) {
+    dependsOn createChangeOwnerContainer
+    targetContainerId { createChangeOwnerContainer.getContainerId() }
+}
+
+task changeOwnerHubDataStop(type: DockerWaitContainer) {
+    dependsOn startChangeOwnerHubData
+    timeout 30
+    targetContainerId { startChangeOwnerHubData.getContainerId() }
+}
+
+task changeOwnerHubData(type: DockerRemoveContainer) {
+    dependsOn changeOwnerHubDataStop
+    targetContainerId { changeOwnerHubDataStop.getContainerId() }
+}
+
+task hubDockerfile (type: Dockerfile) {
+    destFile = project.file('build/hub/Dockerfile')
+    from 'jetbrains/hub:2017.4.8440'
+    instruction 'USER root'
+    instruction 'RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/'
+    instruction 'USER jetbrains'
+    instruction 'HEALTHCHECK --interval=5s --timeout=120s --retries=25 CMD curl --fail http://127.0.0.1:8080/hub/ || exit 1'
+}
+
+task hubBuildImage(type: DockerBuildImage) {
+    dependsOn hubDockerfile
+    inputDir = hubDockerfile.destFile.parentFile
+    tag = 'hub:latest'
+}
+
+task createHubContainer(type: DockerCreateContainer) {
+    dependsOn hubBuildImage
+    targetImageId { hubBuildImage.getImageId() }
+    portBindings = ['127.0.0.1:8080:8080']
+    def projectPath = project.getProjectDir().toString()
+    binds = new HashMap<String, String>()
+    binds.put(projectPath + '/hub/data', '/opt/hub/data')
+    binds.put(projectPath + '/hub/conf', '/opt/hub/conf')
+    containerName = 'jb-hub-for-client'
+}
+
+task startHubRun(type: DockerStartContainer) {
+    dependsOn createHubContainer
+    targetContainerId { createHubContainer.getContainerId() }
+}
+
+task startHub(type: DockerWaitHealthyContainer) {
+    dependsOn startHubRun
+    targetContainerId { startHubRun.getContainerId() }
+    timeout 120
+    checkInterval 5
+}
+
+task sendStopHub(type: DockerExecContainer) {
+    targetContainerId { 'jb-hub-for-client' }
+    cmd = ["stop"]
+}
+
+task hubStopWait(type: DockerWaitContainer) {
+    dependsOn sendStopHub
+    timeout 60
+    targetContainerId { sendStopHub.getContainerId() }
+}
+
+task deleteHub(type: DockerRemoveContainer) {
+    dependsOn hubStopWait
+    targetContainerId { hubStopWait.getContainerId() }
 }
 
 repositories {

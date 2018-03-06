@@ -46,7 +46,7 @@ public final class ProjectsITCase {
                     ),
                     new com.github.smallcreep.jb.hub.api.query.Field(
                         "id",
-                        "b41c4407-3349-4e57-9c69-1ddcf622545b"
+                        "2f185454-8be6-459e-bb8c-def23a607ded"
                     )
                 )
             )
@@ -83,7 +83,7 @@ public final class ProjectsITCase {
             Json.createObjectBuilder()
                 .add(
                     "id",
-                    "b41c4407-3349-4e57-9c69-1ddcf622545b"
+                    "2f185454-8be6-459e-bb8c-def23a607ded"
                 )
                 .add(
                     "key",
@@ -115,7 +115,7 @@ public final class ProjectsITCase {
                             Json.createObjectBuilder()
                                 .add(
                                     "id",
-                                    "8b0503be-b322-49ee-99c3-a2461932e24d"
+                                    "ca54fdd7-296d-4aed-be79-4c284b0c0508"
                                 )
                                 .add(
                                     "key",
@@ -126,7 +126,7 @@ public final class ProjectsITCase {
                             Json.createObjectBuilder()
                                 .add(
                                     "id",
-                                    "bbca3a28-3061-4190-ba9e-eb93a3727918"
+                                    "618499ff-0e18-490e-856d-7cb55dca8e2b"
                                 )
                                 .add(
                                     "key",
